@@ -1,12 +1,27 @@
 import './App.css';
 import { useState } from 'react';
+import TestPage from './components/TestPage';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showTest, setShowTest] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const startTest = () => {
+    setShowTest(true);
+    setIsMenuOpen(false);
+  };
+
+  const backToHome = () => {
+    setShowTest(false);
+  };
+
+  if (showTest) {
+    return <TestPage onBack={backToHome} />;
+  }
 
   return (
     <div className="App">
@@ -22,15 +37,15 @@ function App() {
         </div>
       </div>
 
-      <nav className="main-nav">
-        <div className="nav-brand">
+      <nav className="main-nav" style={{ padding: '1rem 4rem' }}>
+        <div className="nav-brand" onClick={backToHome} style={{ cursor: 'pointer' }}>
           <span className="gradient-text">Skills</span>Test
         </div>
         <button className="mobile-menu-btn" onClick={toggleMenu}>
           {isMenuOpen ? '✕' : '☰'}
         </button>
         <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <a href="#start" onClick={() => setIsMenuOpen(false)}>Тестирование</a>
+          <a href="#start" onClick={(e) => { e.preventDefault(); startTest(); }}>Тестирование</a>
           <a href="#stats" onClick={() => setIsMenuOpen(false)}>Статистика</a>
           <a href="#courses" onClick={() => setIsMenuOpen(false)}>Курсы</a>
           <a href="#login" className="login-btn" onClick={() => setIsMenuOpen(false)}>Войти</a>
@@ -47,7 +62,7 @@ function App() {
               предлагает персонализированный путь к успеху. Присоединяйтесь к тысячам профессионалов, 
               которые уже достигли новых карьерных высот благодаря нашему инновационному подходу.
             </p>
-            <button className="start-test-btn">Начать путешествие</button>
+            <button className="start-test-btn" onClick={startTest}>Начать путешествие</button>
           </div>
           <div className="stats-cards">
             <div className="stat-card">
@@ -113,7 +128,7 @@ function App() {
               Начните бесплатное тестирование прямо сейчас и получите персональный план развития от наших экспертов. 
               Ваше будущее начинается здесь!
             </p>
-            <button className="cta-btn">Создать аккаунт бесплатно</button>
+            <button className="cta-btn" onClick={startTest}>Создать аккаунт бесплатно</button>
           </div>
         </section>
       </main>
