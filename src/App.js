@@ -39,7 +39,7 @@ function App() {
 
       <nav className="main-nav" style={{ padding: '1rem 4rem' }}>
         <div className="nav-brand" onClick={backToHome} style={{ cursor: 'pointer' }}>
-          <span className="gradient-text">Skills</span>Test
+          <span className="gradient-text">Poly</span>Skills
         </div>
         <button className="mobile-menu-btn" onClick={toggleMenu}>
           {isMenuOpen ? '✕' : '☰'}
@@ -55,7 +55,7 @@ function App() {
       <main>
         <section className="hero-section">
           <div className="hero-content">
-            <h1>Откройте новые горизонты с <span className="gradient-text">SkillsTest</span></h1>
+            <h1>Откройте новые горизонты с <span className="gradient-text">PolySkills</span></h1>
             <p className="hero-text">
               Погрузитесь в мир профессионального развития с передовыми технологиями искусственного интеллекта. 
               Наша платформа анализирует ваши компетенции с точностью до 95%, выявляет скрытые таланты и 

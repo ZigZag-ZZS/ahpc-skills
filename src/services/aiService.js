@@ -13,15 +13,37 @@ class AIService {
    * @returns {Promise<Array>} Массив сгенерированных вопросов
    */
   async generateQuestions(userProfile, questionCount = 10) {
-    const prompt = this._buildQuestionPrompt(userProfile, questionCount);
+    // Добавляем два обязательных профильных вопроса в начало
+    const profileQuestions = [
+      {
+        id: 'profile_name',
+        question: "Давайте узнаем как вас зовут?",
+        type: "text",
+        category: "Профиль",
+        isProfileQuestion: true
+      },
+      {
+        id: 'profile_role',
+        question: "Вы студент или преподаватель?",
+        type: "multiple",
+        options: ["Студент", "Преподаватель"],
+        category: "Профиль",
+        isProfileQuestion: true,
+        singleChoice: true
+      }
+    ];
+
+    const prompt = this._buildQuestionPrompt(userProfile, questionCount - 2);
     
     try {
       const response = await this._callGeminiAPI(prompt);
-      const questions = this._parseQuestionsFromResponse(response);
-      return questions;
+      const aiQuestions = this._parseQuestionsFromResponse(response);
+      
+      // Объединяем профильные вопросы с сгенерированными
+      return [...profileQuestions, ...aiQuestions];
     } catch (error) {
       console.error('Ошибка генерации вопросов:', error);
-      return this._getFallbackQuestions();
+      return [...profileQuestions, ...this._getFallbackQuestions()];
     }
   }
 
@@ -32,15 +54,29 @@ class AIService {
    * @returns {Promise<Object>} Статистика и рекомендации
    */
   async analyzeAnswers(answers, questions) {
-    const prompt = this._buildAnalysisPrompt(answers, questions);
+    // Извлекаем профильную информацию
+    const userName = answers['profile_name'] || 'Пользователь';
+    const userRole = answers['profile_role']?.[0] || 'Специалист';
+    
+    const prompt = this._buildAnalysisPrompt(answers, questions, userName, userRole);
     
     try {
       const response = await this._callGeminiAPI(prompt);
       const analysis = this._parseAnalysisFromResponse(response);
-      return analysis;
+      
+      // Добавляем профильную информацию в результат
+      return {
+        ...analysis,
+        userName,
+        userRole
+      };
     } catch (error) {
       console.error('Ошибка анализа ответов:', error);
-      return this._getFallbackAnalysis();
+      return {
+        ...this._getFallbackAnalysis(),
+        userName,
+        userRole
+      };
     }
   }
 
@@ -58,7 +94,7 @@ class AIService {
       return recommendations;
     } catch (error) {
       console.error('Ошибка генерации рекомендаций:', error);
-      return this._getFallbackRecommendations();
+      return this._getFallbackRecommendations(analysis.userRole);
     }
   }
 
@@ -128,20 +164,27 @@ class AIService {
    * Построение промпта для анализа ответов
    * @private
    */
-  _buildAnalysisPrompt(answers, questions) {
-    const answersSummary = questions.map((q, idx) => ({
-      question: q.question,
-      category: q.category,
-      type: q.type,
-      answer: answers[q.id]
-    }));
+  _buildAnalysisPrompt(answers, questions, userName, userRole) {
+    // Фильтруем профильные вопросы из анализа
+    const answersSummary = questions
+      .filter(q => !q.isProfileQuestion)
+      .map((q) => ({
+        question: q.question,
+        category: q.category,
+        type: q.type,
+        answer: answers[q.id]
+      }));
 
     return `Проанализируй результаты тестирования пользователя и предоставь детальную оценку.
+
+Информация о пользователе:
+- Имя: ${userName}
+- Роль: ${userRole}
 
 Вопросы и ответы:
 ${JSON.stringify(answersSummary, null, 2)}
 
-Предоставь анализ в формате JSON:
+Предоставь персонализированный анализ с учетом роли пользователя в формате JSON:
 {
   "overallScore": число от 0 до 100,
   "categoryScores": {
@@ -152,7 +195,7 @@ ${JSON.stringify(answersSummary, null, 2)}
   "strengths": ["сильная сторона 1", "сильная сторона 2"],
   "weaknesses": ["слабая сторона 1", "слабая сторона 2"],
   "level": "Начинающий|Средний|Продвинутый|Эксперт",
-  "detailedFeedback": "Детальный анализ с выводами"
+  "detailedFeedback": "Детальный анализ с выводами, адаптированный под роль ${userRole}"
 }`;
   }
 
@@ -166,7 +209,7 @@ ${JSON.stringify(answersSummary, null, 2)}
 Результаты анализа:
 ${JSON.stringify(analysis, null, 2)}
 
-Предоставь рекомендации в формате JSON:
+Предоставь рекомендации с учетом роли "${analysis.userRole}" в формате JSON:
 {
   "courses": [
     {
@@ -186,9 +229,9 @@ ${JSON.stringify(analysis, null, 2)}
     }
   ],
   "careerPath": {
-    "current": "Текущая позиция",
+    "current": "Текущая позиция с учетом роли ${analysis.userRole}",
     "potential": ["Возможная позиция 1", "Возможная позиция 2"],
-    "roadmap": "Краткий план развития карьеры"
+    "roadmap": "Краткий план развития с учетом роли ${analysis.userRole}"
   }
 }`;
   }
@@ -252,32 +295,32 @@ ${JSON.stringify(analysis, null, 2)}
   _getFallbackQuestions() {
     return [
       {
-        id: 1,
+        id: 3,
         question: "Как вы оцениваете свои навыки программирования?",
         type: "rating",
         category: "Технические навыки"
       },
       {
-        id: 2,
+        id: 4,
         question: "Какие языки программирования вы знаете?",
         type: "multiple",
         options: ["JavaScript", "Python", "Java", "C++", "Go", "Ruby"],
         category: "Технические навыки"
       },
       {
-        id: 3,
+        id: 5,
         question: "Опишите ваш опыт работы в команде",
         type: "text",
         category: "Soft Skills"
       },
       {
-        id: 4,
+        id: 6,
         question: "Насколько хорошо вы владеете английским языком?",
         type: "rating",
         category: "Языковые навыки"
       },
       {
-        id: 5,
+        id: 7,
         question: "Какие фреймворки вы использовали?",
         type: "multiple",
         options: ["React", "Vue", "Angular", "Django", "Flask", "Spring"],
@@ -315,9 +358,41 @@ ${JSON.stringify(analysis, null, 2)}
    * Fallback рекомендации при ошибке API
    * @private
    */
-  _getFallbackRecommendations() {
-    return {
-      courses: [
+  _getFallbackRecommendations(userRole = 'Специалист') {
+    const roleBasedCourses = {
+      'Студент': [
+        {
+          title: "Основы программирования",
+          description: "Базовые концепции для начинающих разработчиков",
+          category: "Технические навыки",
+          priority: "high",
+          estimatedTime: "50 часов"
+        },
+        {
+          title: "Академическое письмо и презентации",
+          description: "Развитие навыков коммуникации для студентов",
+          category: "Soft Skills",
+          priority: "medium",
+          estimatedTime: "25 часов"
+        }
+      ],
+      'Преподаватель': [
+        {
+          title: "Современные методики преподавания",
+          description: "Инновационные подходы в образовании",
+          category: "Педагогика",
+          priority: "high",
+          estimatedTime: "35 часов"
+        },
+        {
+          title: "Цифровые инструменты для обучения",
+          description: "EdTech решения для эффективного преподавания",
+          category: "Технические навыки",
+          priority: "high",
+          estimatedTime: "30 часов"
+        }
+      ],
+      'default': [
         {
           title: "Продвинутый JavaScript",
           description: "Глубокое погружение в современный JavaScript",
@@ -332,7 +407,13 @@ ${JSON.stringify(analysis, null, 2)}
           priority: "medium",
           estimatedTime: "20 часов"
         }
-      ],
+      ]
+    };
+
+    const courses = roleBasedCourses[userRole] || roleBasedCourses['default'];
+
+    return {
+      courses,
       skillsToImprove: [
         {
           skill: "React",
@@ -345,9 +426,11 @@ ${JSON.stringify(analysis, null, 2)}
         }
       ],
       careerPath: {
-        current: "Junior Developer",
-        potential: ["Middle Developer", "Frontend Specialist"],
-        roadmap: "Фокус на углубление знаний JavaScript и React, участие в открытых проектах"
+        current: userRole,
+        potential: userRole === 'Студент' ? ["Junior Developer", "Intern"] :
+                   userRole === 'Преподаватель' ? ["Старший преподаватель", "Методист"] :
+                   ["Middle Developer", "Team Lead"],
+        roadmap: `Фокус на развитие ключевых компетенций для роли ${userRole}`
       }
     };
   }
