@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './TestPage.css';
 import aiService from '../services/aiService';
+import apiService from '../services/apiService';
 
 function TestPage({ onBack }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -11,9 +12,13 @@ function TestPage({ onBack }) {
   const [analysis, setAnalysis] = useState(null);
   const [recommendations, setRecommendations] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [testId, setTestId] = useState(null);
+  const [savedToDb, setSavedToDb] = useState(false);
 
-  // Загрузка вопросов при монтировании компонента
+  // Генерация уникального test_id при монтировании
   useEffect(() => {
+    const newTestId = apiService.generateTestId();
+    setTestId(newTestId);
     loadQuestions();
   }, []);
 
@@ -60,12 +65,50 @@ function TestPage({ onBack }) {
       const recs = await aiService.generateRecommendations(analysisResult);
       setRecommendations(recs);
       
+      // Сохранение результатов в базу данных
+      await saveResultsToDatabase(analysisResult, recs);
+      
       setShowResults(true);
     } catch (error) {
       console.error('Ошибка анализа:', error);
       setShowResults(true);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const saveResultsToDatabase = async (analysisResult, recs) => {
+    try {
+      // Подготовка данных для сохранения
+      const testData = {
+        full_name: analysisResult.userName || 'Неизвестный пользователь',
+        user_type: analysisResult.userRole || 'Специалист',
+        test_id: testId,
+        test_score: {
+          overallScore: analysisResult.overallScore,
+          level: analysisResult.level,
+          categoryScores: analysisResult.categoryScores,
+          strengths: analysisResult.strengths,
+          weaknesses: analysisResult.weaknesses,
+          detailedFeedback: analysisResult.detailedFeedback,
+          recommendations: {
+            courses: recs.courses?.slice(0, 3), // Сохраняем только топ-3 курса
+            skillsToImprove: recs.skillsToImprove,
+            careerPath: recs.careerPath
+          },
+          completedAt: new Date().toISOString()
+        }
+      };
+
+      const response = await apiService.saveTestResults(testData);
+      
+      if (response.success) {
+        console.log('✅ Результаты успешно сохранены в БД:', response.data);
+        setSavedToDb(true);
+      }
+    } catch (error) {
+      console.error('❌ Ошибка сохранения в БД:', error);
+      // Не прерываем показ результатов, даже если сохранение не удалось
     }
   };
 
