@@ -1,241 +1,167 @@
 const express = require('express');
-const mysql = require('mysql2/promise');
 const cors = require('cors');
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+const dbManager = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Создание пула соединений с базой данных
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+// Инициализация базы данных при старте
+let dbInitialized = false;
 
-// Проверка подключения к базе данных
-pool.getConnection()
-  .then(connection => {
-    console.log('✅ Успешное подключение к MariaDB');
-    connection.release();
-  })
-  .catch(err => {
-    console.error('❌ Ошибка подключения к базе данных:', err);
-  });
+async function initializeDatabase() {
+  try {
+    await dbManager.initialize();
+    dbInitialized = true;
+    console.log(`📊 Using ${dbManager.getAdapterType()} adapter`);
+  } catch (error) {
+    console.error('Failed to initialize database:', error);
+    process.exit(1);
+  }
+}
 
-/**
- * POST /api/test-results
- * Сохранение результатов теста в базу данных
- */
-app.post('/api/test-results', async (req, res) => {
+// Middleware для проверки инициализации БД
+function requireDbInit(req, res, next) {
+  if (!dbInitialized) {
+    return res.status(503).json({
+      success: false,
+      error: 'Database not initialized'
+    });
+  }
+  next();
+}
+
+// POST /api/test-results
+app.post('/api/test-results', requireDbInit, async (req, res) => {
   const { full_name, user_type, test_id, test_score } = req.body;
 
-  // Валидация данных
   if (!full_name || !user_type || !test_id) {
     return res.status(400).json({
       success: false,
-      error: 'Отсутствуют обязательные поля: full_name, user_type, test_id'
+      error: 'Missing required fields: full_name, user_type, test_id'
     });
   }
 
   try {
-    // Преобразуем test_score в JSON строку если это объект
-    const scoreData = typeof test_score === 'object' 
-      ? JSON.stringify(test_score) 
-      : test_score;
-
-    const query = `
-      INSERT INTO test_results 
-      (full_name, user_type, test_id, test_score, completion_date) 
-      VALUES (?, ?, ?, ?, NOW())
-    `;
-
-    const [result] = await pool.execute(query, [
+    const result = await dbManager.createTestResult({
       full_name,
       user_type,
       test_id,
-      scoreData
-    ]);
+      test_score
+    });
 
     res.status(201).json({
       success: true,
-      message: 'Результаты теста успешно сохранены',
-      data: {
-        id: result.insertId,
-        full_name,
-        user_type,
-        test_id
-      }
+      message: 'Test results saved successfully',
+      data: result
     });
   } catch (error) {
-    console.error('Ошибка сохранения результатов:', error);
+    console.error('Error saving results:', error);
     res.status(500).json({
       success: false,
-      error: 'Ошибка сервера при сохранении результатов',
+      error: 'Server error while saving results',
       details: error.message
     });
   }
 });
 
-/**
- * GET /api/test-results
- * Получение всех результатов тестов
- */
-app.get('/api/test-results', async (req, res) => {
+// GET /api/test-results
+app.get('/api/test-results', requireDbInit, async (req, res) => {
   try {
-    const [rows] = await pool.execute(
-      'SELECT * FROM test_results ORDER BY completion_date DESC'
-    );
-
-    // Парсим JSON в test_score обратно в объект
-    const results = rows.map(row => ({
-      ...row,
-      test_score: typeof row.test_score === 'string' 
-        ? JSON.parse(row.test_score) 
-        : row.test_score
-    }));
-
+    const results = await dbManager.getAllTestResults();
+    
     res.json({
       success: true,
       data: results,
       count: results.length
     });
   } catch (error) {
-    console.error('Ошибка получения результатов:', error);
+    console.error('Error fetching results:', error);
     res.status(500).json({
       success: false,
-      error: 'Ошибка сервера при получении результатов'
+      error: 'Server error while fetching results'
     });
   }
 });
 
-/**
- * GET /api/test-results/:id
- * Получение результата теста по ID
- */
-app.get('/api/test-results/:id', async (req, res) => {
-  const { id } = req.params;
-
+// GET /api/test-results/:id
+app.get('/api/test-results/:id', requireDbInit, async (req, res) => {
   try {
-    const [rows] = await pool.execute(
-      'SELECT * FROM test_results WHERE id = ?',
-      [id]
-    );
-
-    if (rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        error: 'Результат теста не найден'
-      });
-    }
-
-    const result = {
-      ...rows[0],
-      test_score: typeof rows[0].test_score === 'string'
-        ? JSON.parse(rows[0].test_score)
-        : rows[0].test_score
-    };
-
+    const result = await dbManager.getTestResultById(req.params.id);
+    
     res.json({
       success: true,
       data: result
     });
   } catch (error) {
-    console.error('Ошибка получения результата:', error);
-    res.status(500).json({
+    res.status(404).json({
       success: false,
-      error: 'Ошибка сервера при получении результата'
+      error: error.message
     });
   }
 });
 
-/**
- * GET /api/test-results/user/:test_id
- * Получение результатов по test_id
- */
-app.get('/api/test-results/user/:test_id', async (req, res) => {
-  const { test_id } = req.params;
-
+// GET /api/test-results/user/:test_id
+app.get('/api/test-results/user/:test_id', requireDbInit, async (req, res) => {
   try {
-    const [rows] = await pool.execute(
-      'SELECT * FROM test_results WHERE test_id = ? ORDER BY completion_date DESC',
-      [test_id]
-    );
-
-    const results = rows.map(row => ({
-      ...row,
-      test_score: typeof row.test_score === 'string'
-        ? JSON.parse(row.test_score)
-        : row.test_score
-    }));
-
+    const results = await dbManager.getTestResultsByTestId(req.params.test_id);
+    
     res.json({
       success: true,
       data: results,
       count: results.length
     });
   } catch (error) {
-    console.error('Ошибка получения результатов пользователя:', error);
+    console.error('Error fetching user results:', error);
     res.status(500).json({
       success: false,
-      error: 'Ошибка сервера'
+      error: 'Server error'
     });
   }
 });
 
-/**
- * GET /api/statistics
- * Получение общей статистики
- */
-app.get('/api/statistics', async (req, res) => {
+// GET /api/statistics
+app.get('/api/statistics', requireDbInit, async (req, res) => {
   try {
-    const [stats] = await pool.execute(`
-      SELECT 
-        COUNT(*) as total_tests,
-        COUNT(DISTINCT test_id) as unique_users,
-        AVG(JSON_EXTRACT(test_score, '$.overallScore')) as avg_score,
-        user_type,
-        COUNT(*) as count_by_type
-      FROM test_results
-      GROUP BY user_type
-    `);
-
+    const stats = await dbManager.getStatistics();
+    
     res.json({
       success: true,
       data: stats
     });
   } catch (error) {
-    console.error('Ошибка получения статистики:', error);
+    console.error('Error fetching statistics:', error);
     res.status(500).json({
       success: false,
-      error: 'Ошибка сервера'
+      error: 'Server error'
     });
   }
 });
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+app.get('/health', async (req, res) => {
+  const dbHealth = await dbManager.healthCheck();
+  
+  res.json({
+    status: dbHealth ? 'OK' : 'DB_DOWN',
+    database: dbManager.getAdapterType(),
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Запуск сервера
-app.listen(PORT, () => {
-  console.log(`🚀 Сервер запущен на порту ${PORT}`);
-  console.log(`📊 API доступен по адресу: http://localhost:${PORT}`);
+initializeDatabase().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📊 API available at: http://localhost:${PORT}`);
+  });
 });
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
-  console.log('\n🛑 Остановка сервера...');
-  await pool.end();
+  console.log('\n🛑 Shutting down server...');
+  await dbManager.close();
   process.exit(0);
 });
