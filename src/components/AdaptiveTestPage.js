@@ -55,7 +55,6 @@ function AdaptiveTestPage({ onBack }) {
     setFeedbackData(result);
     setShowFeedback(true);
 
-    // Автоматический переход через 2 секунды
     setTimeout(() => {
       loadNextQuestion();
     }, 2000);
@@ -65,7 +64,6 @@ function AdaptiveTestPage({ onBack }) {
     const results = adaptiveTestingService.getFinalResults();
     setTestResults(results);
     
-    // Сохранение в БД
     try {
       await apiService.saveTestResults({
         full_name: userName,
@@ -88,7 +86,6 @@ function AdaptiveTestPage({ onBack }) {
   };
 
   const handleSkip = () => {
-    // Засчитываем как неправильный ответ
     adaptiveTestingService.processAnswer(currentQuestion.id, '');
     loadNextQuestion();
   };
@@ -99,8 +96,8 @@ function AdaptiveTestPage({ onBack }) {
 
   const progress = adaptiveTestingService.getProgress();
 
-  // Экран профиля пользователя
-  if (profileStep < 2) {
+  // Экран 1: Ввод имени
+  if (profileStep === 0) {
     return (
       <div className="test-page">
         <div className="animated-background">
@@ -116,7 +113,167 @@ function AdaptiveTestPage({ onBack }) {
 
         <nav className="main-nav">
           <div className="nav-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
-            <span className="gradient-text">Adaptive</span>Test
+            <span className="gradient-text">Poly</span>Skills
+          </div>
+        </nav>
+
+        <div className="test-container">
+          <div className="question-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <h2 className="question-text" style={{ marginBottom: '1rem' }}>
+              👋 Добро пожаловать!
+            </h2>
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem', fontSize: '1.1rem' }}>
+              Давайте познакомимся перед началом адаптивного тестирования
+            </p>
+            
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ 
+                display: 'block', 
+                color: 'white', 
+                marginBottom: '0.5rem',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}>
+                Как вас зовут?
+              </label>
+              <input
+                type="text"
+                className="text-input"
+                placeholder="Введите ваше имя"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                style={{ 
+                  width: '100%',
+                  padding: '1rem 1.5rem',
+                  fontSize: '1.1rem',
+                  marginBottom: '0.5rem'
+                }}
+                onKeyPress={(e) => e.key === 'Enter' && userName.trim() && startTest()}
+              />
+              <div className="text-hint">
+                💡 Это поможет персонализировать ваши результаты
+              </div>
+            </div>
+
+            <button
+              className="nav-btn primary"
+              onClick={startTest}
+              disabled={!userName.trim()}
+              style={{ width: '100%' }}
+            >
+              Продолжить →
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Экран 2: Выбор роли
+  if (profileStep === 1) {
+    return (
+      <div className="test-page">
+        <div className="animated-background">
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="floating-particles">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="particle"></div>
+            ))}
+          </div>
+        </div>
+
+        <nav className="main-nav">
+          <div className="nav-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
+            <span className="gradient-text">Poly</span>Skills
+          </div>
+        </nav>
+
+        <div className="test-container">
+          <div className="question-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <h2 className="question-text" style={{ marginBottom: '1rem' }}>
+              Приятно познакомиться, {userName}! 👋
+            </h2>
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem', fontSize: '1.1rem' }}>
+              Выберите вашу роль для персонализации тестирования
+            </p>
+
+            <div style={{ display: 'grid', gap: '1rem', marginBottom: '2rem' }}>
+              <button
+                className={`option-btn ${userRole === 'Студент' ? 'active' : ''}`}
+                onClick={() => setUserRole('Студент')}
+                style={{ width: '100%', textAlign: 'left' }}
+              >
+                <span className="option-check">✓</span>
+                <div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    🎓 Студент
+                  </div>
+                  <div style={{ fontSize: '0.9rem', opacity: 0.7 }}>
+                    Я учусь и хочу оценить свои навыки
+                  </div>
+                </div>
+              </button>
+
+              <button
+                className={`option-btn ${userRole === 'Преподаватель' ? 'active' : ''}`}
+                onClick={() => setUserRole('Преподаватель')}
+                style={{ width: '100%', textAlign: 'left' }}
+              >
+                <span className="option-check">✓</span>
+                <div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    👨‍🏫 Преподаватель
+                  </div>
+                  <div style={{ fontSize: '0.9rem', opacity: 0.7 }}>
+                    Я преподаю и хочу оценить свои знания
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button
+                className="nav-btn secondary"
+                onClick={() => setProfileStep(0)}
+                style={{ flex: 1 }}
+              >
+                ← Назад
+              </button>
+              <button
+                className="nav-btn primary"
+                onClick={startTest}
+                disabled={!userRole}
+                style={{ flex: 2 }}
+              >
+                Начать тестирование 🚀
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Экран 3: Результаты
+  if (showResults && testResults) {
+    return (
+      <div className="test-page">
+        <div className="animated-background">
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="wave"></div>
+          <div className="floating-particles">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="particle"></div>
+            ))}
+          </div>
+        </div>
+
+        <nav className="main-nav">
+          <div className="nav-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
+            <span className="gradient-text">Poly</span>Skills
           </div>
           <button className="mobile-menu-btn" onClick={toggleMenu}>
             {isMenuOpen ? '✕' : '☰'}
@@ -131,8 +288,8 @@ function AdaptiveTestPage({ onBack }) {
         <div className="results-container">
           <div className="results-header">
             <div className="success-icon">✓</div>
-            <h1>Адаптивное тестирование завершено!</h1>
-            <p>Привет, <strong>{userName}</strong>! Вот ваши результаты.</p>
+            <h1>Тестирование завершено, {userName}!</h1>
+            <p>Результаты адаптивного тестирования готовы</p>
           </div>
 
           <div className="results-stats">
@@ -160,7 +317,6 @@ function AdaptiveTestPage({ onBack }) {
             </div>
           </div>
 
-          {/* Результаты по компетенциям */}
           <div className="result-card" style={{ marginBottom: '2rem', textAlign: 'left' }}>
             <h3 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '1.8rem', textAlign: 'center' }}>
               📈 Ваши компетенции
@@ -231,6 +387,7 @@ function AdaptiveTestPage({ onBack }) {
 
                     <div style={{
                       display: 'flex',
+                      flexWrap: 'wrap',
                       gap: '1rem',
                       color: 'rgba(255, 255, 255, 0.6)',
                       fontSize: '0.9rem'
@@ -247,10 +404,9 @@ function AdaptiveTestPage({ onBack }) {
             </div>
           </div>
 
-          {/* Рекомендации на основе роли */}
           <div className="result-card" style={{ marginBottom: '2rem', textAlign: 'left' }}>
             <h3 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '1.5rem' }}>
-              💡 Персональные рекомендации для {userRole === 'Студент' ? 'студента' : 'преподавателя'}
+              💡 Персональные рекомендации для {userRole === 'Студент' ? 'студента' : userRole === 'Преподаватель' ? 'преподавателя' : 'специалиста'}
             </h3>
             <div style={{ color: 'rgba(255, 255, 255, 0.8)', lineHeight: '1.8' }}>
               {userRole === 'Студент' ? (
@@ -265,7 +421,7 @@ function AdaptiveTestPage({ onBack }) {
                     <li>Регулярно проходите тестирование для отслеживания прогресса</li>
                   </ul>
                 </>
-              ) : (
+              ) : userRole === 'Преподаватель' ? (
                 <>
                   <p style={{ marginBottom: '1rem' }}>
                     Рекомендации для повышения эффективности преподавания:
@@ -275,6 +431,18 @@ function AdaptiveTestPage({ onBack }) {
                     <li>Адаптируйте учебные материалы под выявленные слабые зоны</li>
                     <li>Внедряйте интерактивные методы обучения</li>
                     <li>Регулярно обновляйте свои знания в области технологий</li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <p style={{ marginBottom: '1rem' }}>
+                    Рекомендации для профессионального развития:
+                  </p>
+                  <ul style={{ paddingLeft: '1.5rem' }}>
+                    <li>Углубите знания в областях с высокими результатами</li>
+                    <li>Пройдите специализированные курсы по слабым компетенциям</li>
+                    <li>Делитесь опытом с коллегами через менторство</li>
+                    <li>Следите за трендами в вашей профессиональной области</li>
                   </ul>
                 </>
               )}
@@ -288,6 +456,7 @@ function AdaptiveTestPage({ onBack }) {
               setProfileStep(0);
               setUserName('');
               setUserRole('');
+              setCurrentQuestion(null);
             }}>
               Пройти тест заново
             </button>
@@ -300,7 +469,7 @@ function AdaptiveTestPage({ onBack }) {
     );
   }
 
-  // Экран тестирования
+  // Экран 4: Загрузка вопроса
   if (!currentQuestion) {
     return (
       <div className="test-page">
@@ -317,7 +486,7 @@ function AdaptiveTestPage({ onBack }) {
 
         <nav className="main-nav">
           <div className="nav-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
-            <span className="gradient-text">Adaptive</span>Test
+            <span className="gradient-text">Poly</span>Skills
           </div>
         </nav>
 
@@ -333,6 +502,7 @@ function AdaptiveTestPage({ onBack }) {
     );
   }
 
+  // Экран 5: Основное тестирование
   return (
     <div className="test-page">
       <div className="animated-background">
@@ -348,7 +518,7 @@ function AdaptiveTestPage({ onBack }) {
 
       <nav className="main-nav">
         <div className="nav-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
-          <span className="gradient-text">Adaptive</span>Test
+          <span className="gradient-text">Poly</span>Skills
         </div>
         <button className="mobile-menu-btn" onClick={toggleMenu}>
           {isMenuOpen ? '✕' : '☰'}
@@ -384,7 +554,6 @@ function AdaptiveTestPage({ onBack }) {
         <div className="question-card">
           <h2 className="question-text">{currentQuestion.question}</h2>
 
-          {/* Feedback после ответа */}
           {showFeedback && feedbackData && (
             <div style={{
               background: feedbackData.isCorrect 
@@ -413,7 +582,6 @@ function AdaptiveTestPage({ onBack }) {
           )}
 
           <div className="answer-section">
-            {/* Rating type */}
             {currentQuestion.type === 'rating' && (
               <div className="rating-container">
                 {[1, 2, 3, 4, 5].map((rating) => (
@@ -436,7 +604,6 @@ function AdaptiveTestPage({ onBack }) {
               </div>
             )}
 
-            {/* Multiple choice */}
             {currentQuestion.type === 'multiple' && currentQuestion.options && (
               <div className="multiple-container">
                 {currentQuestion.options.map((option) => (
@@ -453,7 +620,6 @@ function AdaptiveTestPage({ onBack }) {
               </div>
             )}
 
-            {/* Text input */}
             {currentQuestion.type === 'text' && (
               <div className="text-container">
                 <textarea

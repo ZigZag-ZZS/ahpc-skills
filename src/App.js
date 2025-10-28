@@ -26,7 +26,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Анимированный фон с волнами и частицами */}
       <div className="animated-background">
         <div className="wave"></div>
         <div className="wave"></div>
