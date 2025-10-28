@@ -1,3 +1,5 @@
+import coursesData from '../courses.json';
+
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 class AIService {
@@ -10,16 +12,13 @@ class AIService {
       interests: [],
       responses: []
     };
+    this.courses = coursesData; // Загружаем курсы из файла
   }
 
   /**
-   * НОВЫЙ МЕТОД: Генерация следующего вопроса на основе истории ответов
-   * @param {Array} previousAnswers - Массив предыдущих ответов с вопросами
-   * @param {number} questionNumber - Номер текущего вопроса
-   * @returns {Promise<Object>} Следующий вопрос
+   * Генерация следующего вопроса на основе истории ответов
    */
   async generateNextQuestion(previousAnswers, questionNumber) {
-    // Первые два вопроса - профильные (остаются неизменными)
     if (questionNumber === 0) {
       return {
         id: 'profile_name',
@@ -42,14 +41,12 @@ class AIService {
       };
     }
 
-    // Начиная с 3-го вопроса - ИИ анализирует и задаёт адаптивные вопросы
     const prompt = this._buildAdaptiveQuestionPrompt(previousAnswers, questionNumber);
     
     try {
       const response = await this._callGeminiAPI(prompt);
       const question = this._parseQuestionFromResponse(response, questionNumber);
       
-      // Сохраняем в историю
       this.conversationHistory.push({
         questionNumber,
         question: question.question,
@@ -65,7 +62,6 @@ class AIService {
 
   /**
    * Построение промпта для адаптивного вопроса
-   * @private
    */
   _buildAdaptiveQuestionPrompt(previousAnswers, questionNumber) {
     const answersContext = previousAnswers.map((item, idx) => ({
@@ -75,7 +71,7 @@ class AIService {
       category: item.category
     }));
 
-    const totalQuestions = 12; // Общее количество вопросов в тесте
+    const totalQuestions = 12;
     const progress = Math.round((questionNumber / totalQuestions) * 100);
 
     return `Ты - интеллектуальный профориентационный ассистент. Твоя задача - глубоко понять сильные и слабые стороны пользователя через умные вопросы.
@@ -119,17 +115,11 @@ ${JSON.stringify(answersContext, null, 2)}
   "reasoning": "Почему ты задаёшь именно этот вопрос (для отладки)"
 }
 
-Примеры хороших адаптивных вопросов:
-- Если пользователь - студент IT: "Какие проекты ты создавал самостоятельно?"
-- Если показал интерес к творчеству: "Что тебя больше вдохновляет: решение технических задач или создание чего-то нового?"
-- Если упомянул работу в команде: "Какую роль ты обычно берёшь на себя в групповых проектах?"
-
 ВАЖНО: Отвечай ТОЛЬКО JSON без дополнительного текста!`;
   }
 
   /**
    * Парсинг вопроса из ответа AI
-   * @private
    */
   _parseQuestionFromResponse(response, questionNumber) {
     try {
@@ -142,7 +132,7 @@ ${JSON.stringify(answersContext, null, 2)}
           type: parsed.type || "text",
           category: parsed.category || "Общие",
           options: parsed.options,
-          reasoning: parsed.reasoning // Для отладки
+          reasoning: parsed.reasoning
         };
       }
       throw new Error('JSON не найден в ответе');
@@ -154,7 +144,6 @@ ${JSON.stringify(answersContext, null, 2)}
 
   /**
    * Fallback вопрос если AI не сработал
-   * @private
    */
   _getFallbackQuestion(questionNumber) {
     const fallbackQuestions = [
@@ -183,23 +172,19 @@ ${JSON.stringify(answersContext, null, 2)}
   }
 
   /**
-   * УЛУЧШЕННЫЙ АНАЛИЗ: Глубокий анализ всех ответов с учётом адаптивности
-   * @param {Object} answers - Все ответы пользователя
-   * @param {Array} questions - Все заданные вопросы
-   * @returns {Promise<Object>}
+   * Глубокий анализ всех ответов
    */
   async analyzeAnswers(answers, questions) {
     const userName = answers['profile_name'] || 'Пользователь';
     const userRole = answers['profile_role']?.[0] || 'Специалист';
     
-    // Подготавливаем детальный контекст для анализа
     const conversationFlow = questions.map((q, idx) => ({
       questionNumber: idx + 1,
       question: q.question,
       category: q.category,
       type: q.type,
       answer: answers[q.id],
-      reasoning: q.reasoning // Если есть от AI
+      reasoning: q.reasoning
     }));
 
     const prompt = `Ты - эксперт по оценке профессиональных компетенций. Проведи ГЛУБОКИЙ анализ пользователя.
@@ -247,7 +232,11 @@ ${JSON.stringify(conversationFlow, null, 2)}
   "level": "Начинающий|Развивающийся|Компетентный|Опытный|Эксперт",
   "detailedFeedback": "Подробный персонализированный анализ с конкретными примерами из ответов пользователя",
   "motivationFactors": ["что мотивирует этого человека"],
-  "learningStyle": "Описание предпочитаемого стиля обучения"
+  "learningStyle": "Описание предпочитаемого стиля обучения",
+  "interestAreas": [
+    "Область интереса 1 (для подбора курсов)",
+    "Область интереса 2"
+  ]
 }
 
 ВАЖНО: Будь конкретным, используй информацию из ответов, не используй общие фразы!`;
@@ -272,57 +261,148 @@ ${JSON.stringify(conversationFlow, null, 2)}
   }
 
   /**
-   * УЛУЧШЕННЫЕ РЕКОМЕНДАЦИИ с учётом глубокого анализа
+   * НОВЫЙ МЕТОД: Подбор курсов из базы на основе анализа
+   */
+  _matchCoursesToProfile(analysis) {
+    const interestAreas = analysis.interestAreas || [];
+    const weaknesses = analysis.weaknesses || [];
+    const strengths = analysis.strengths || [];
+    
+    // Собираем ключевые слова для поиска
+    const keywords = [
+      ...interestAreas,
+      ...weaknesses.map(w => w.toLowerCase()),
+      ...strengths.map(s => s.toLowerCase())
+    ].join(' ');
+
+    // Маппинг ключевых слов к областям курсов
+    const searchTerms = {
+      'программирование': ['python', 'разработчик', 'программирование', 'javascript', 'java', 'frontend', 'backend'],
+      'дизайн': ['дизайн', 'ui', 'ux', 'графический', 'веб-дизайн', 'иллюстрация'],
+      'аналитика': ['аналитик', 'data', 'данных', 'sql', 'excel', 'bi'],
+      'маркетинг': ['маркетинг', 'smm', 'реклама', 'продвижение', 'контент'],
+      'управление': ['менеджер', 'управление', 'проект', 'продакт', 'лидерство'],
+      'тестирование': ['тестирование', 'qa', 'тестировщик'],
+      'финансы': ['финансы', 'бухгалтер', 'инвестиции', 'экономика']
+    };
+
+    // Определяем области интересов пользователя
+    const userInterests = [];
+    for (const [area, terms] of Object.entries(searchTerms)) {
+      if (terms.some(term => keywords.toLowerCase().includes(term))) {
+        userInterests.push(area);
+      }
+    }
+
+    // Если не нашли интересов, используем общие курсы
+    if (userInterests.length === 0) {
+      userInterests.push('программирование', 'аналитика');
+    }
+
+    // Фильтруем и ранжируем курсы
+    const matchedCourses = this.courses
+      .map(course => {
+        let relevanceScore = 0;
+        const courseText = `${course.title} ${course.description}`.toLowerCase();
+        
+        // Подсчитываем релевантность
+        userInterests.forEach(interest => {
+          const terms = searchTerms[interest] || [];
+          terms.forEach(term => {
+            if (courseText.includes(term)) {
+              relevanceScore += 10;
+            }
+          });
+        });
+
+        // Бонус за упоминание слабых сторон
+        weaknesses.forEach(weakness => {
+          const weaknessWords = weakness.toLowerCase().split(' ');
+          weaknessWords.forEach(word => {
+            if (word.length > 3 && courseText.includes(word)) {
+              relevanceScore += 5;
+            }
+          });
+        });
+
+        return {
+          ...course,
+          relevanceScore
+        };
+      })
+      .filter(course => course.relevanceScore > 0)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore)
+      .slice(0, 5); // Топ-5 курсов
+
+    return matchedCourses;
+  }
+
+  /**
+   * УЛУЧШЕННЫЙ МЕТОД: Генерация рекомендаций с реальными курсами
    */
   async generateRecommendations(analysis) {
+    // Сначала подбираем подходящие курсы из базы
+    const matchedCourses = this._matchCoursesToProfile(analysis);
+    
+    // Формируем список курсов для передачи в промпт
+    const coursesContext = matchedCourses.map(c => ({
+      title: c.title,
+      description: c.description || 'Курс для развития навыков',
+      link: c.link
+    }));
+
     const prompt = `На основе детального анализа создай ПЕРСОНАЛЬНЫЕ рекомендации для пользователя.
 
 ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ:
 ${JSON.stringify(analysis, null, 2)}
 
+ДОСТУПНЫЕ КУРСЫ ИЗ БАЗЫ:
+${JSON.stringify(coursesContext, null, 2)}
+
 ЗАДАЧА:
-Создай план развития, который:
-1. Учитывает сильные стороны пользователя
-2. Работает над слабыми сторонами
-3. Развивает скрытые таланты
-4. Соответствует стилю обучения
-5. Учитывает мотивацию
+Выбери из ДОСТУПНЫХ КУРСОВ самые подходящие для пользователя и создай план развития.
+
+ВАЖНО: 
+- Используй ТОЛЬКО курсы из списка "ДОСТУПНЫЕ КУРСЫ ИЗ БАЗЫ"
+- Для каждого курса объясни, ПОЧЕМУ он подходит этому конкретному пользователю
+- Расставь приоритеты на основе слабых сторон и интересов
 
 ФОРМАТ ОТВЕТА (строго JSON):
 {
   "courses": [
     {
-      "title": "Название курса",
-      "description": "Почему именно этот курс подходит ЭТОМУ пользователю",
-      "category": "Категория",
-      "priority": "high|medium|low",
-      "estimatedTime": "X часов",
-      "matchReason": "Конкретная причина на основе анализа",
+      "title": "Точное название курса из базы",
+      "description": "Оригинальное описание курса",
+      "link": "Ссылка на курс",
+      "category": "Определи категорию курса",
+      "priority": "high|medium|low - на основе срочности для пользователя",
+      "estimatedTime": "Предположительное время",
+      "matchReason": "ДЕТАЛЬНОЕ объяснение почему ЭТОТ курс подходит ЭТОМУ пользователю с учетом его сильных/слабых сторон и интересов",
       "skills": ["навык1", "навык2"]
     }
   ],
   "skillsToImprove": [
     {
-      "skill": "Конкретный навык",
+      "skill": "Конкретный навык из анализа",
       "currentLevel": "Текущий уровень из анализа",
       "targetLevel": "Целевой уровень",
       "actions": [
         "Конкретное действие 1",
         "Конкретное действие 2"
       ],
-      "resources": ["Ресурс 1", "Ресурс 2"]
+      "recommendedCourses": ["Название курса из списка который поможет"]
     }
   ],
   "careerPath": {
-    "current": "Текущая позиция",
+    "current": "Текущая позиция пользователя",
     "potential": [
       "Реалистичная позиция 1 на основе анализа",
       "Реалистичная позиция 2"
     ],
-    "roadmap": "Детальный план с этапами и сроками"
+    "roadmap": "Детальный план развития с этапами"
   },
   "shortTermGoals": [
-    "Цель на 1-3 месяца"
+    "Цель на 1-3 месяца с привязкой к курсам"
   ],
   "longTermGoals": [
     "Цель на 6-12 месяцев"
@@ -330,21 +410,105 @@ ${JSON.stringify(analysis, null, 2)}
   "personalizedAdvice": "Персональный совет на основе личности и мотивации пользователя"
 }
 
-Рекомендуй курсы от: Learna, Coursera, Udemy, местных университетов.
-ВАЖНО: Все рекомендации должны быть КОНКРЕТНЫМИ и основанными на анализе!`;
+КРИТИЧЕСКИ ВАЖНО: 
+- Выбери 3-5 САМЫХ ПОДХОДЯЩИХ курсов из списка
+- НЕ выдумывай курсы - используй только из базы
+- Объясни matchReason максимально конкретно под этого пользователя`;
 
     try {
       const response = await this._callGeminiAPI(prompt);
-      return this._parseRecommendationsFromResponse(response);
+      const recommendations = this._parseRecommendationsFromResponse(response);
+      
+      // Проверяем, что все рекомендованные курсы есть в нашей базе
+      if (recommendations.courses) {
+        recommendations.courses = recommendations.courses
+          .map(recCourse => {
+            const originalCourse = matchedCourses.find(
+              c => c.title.toLowerCase().includes(recCourse.title.toLowerCase()) ||
+                   recCourse.title.toLowerCase().includes(c.title.toLowerCase())
+            );
+            
+            if (originalCourse) {
+              return {
+                ...recCourse,
+                link: originalCourse.link, // Используем оригинальную ссылку
+                description: originalCourse.description || recCourse.description
+              };
+            }
+            return null;
+          })
+          .filter(c => c !== null)
+          .slice(0, 5); // Максимум 5 курсов
+      }
+      
+      return recommendations;
     } catch (error) {
       console.error('Ошибка генерации рекомендаций:', error);
-      return this._getFallbackRecommendations(analysis.userRole);
+      return this._getFallbackRecommendationsWithCourses(analysis, matchedCourses);
     }
   }
 
   /**
-   * Основной метод для вызова Gemini API
-   * @private
+   * Fallback рекомендации с реальными курсами
+   */
+  _getFallbackRecommendationsWithCourses(analysis, matchedCourses) {
+    const topCourses = matchedCourses.slice(0, 3).map(course => ({
+      title: course.title,
+      description: course.description || 'Курс для развития профессиональных навыков',
+      link: course.link,
+      category: this._detectCourseCategory(course.title),
+      priority: 'high',
+      estimatedTime: '20-40 часов',
+      matchReason: `Этот курс поможет вам развить навыки в области ${this._detectCourseCategory(course.title).toLowerCase()}`,
+      skills: ['Профессиональное развитие']
+    }));
+
+    return {
+      courses: topCourses,
+      skillsToImprove: [
+        {
+          skill: analysis.weaknesses?.[0] || "Профессиональное развитие",
+          currentLevel: "Базовый",
+          targetLevel: "Продвинутый",
+          actions: ["Пройти рекомендованные курсы", "Практиковать полученные знания"],
+          recommendedCourses: topCourses.map(c => c.title)
+        }
+      ],
+      careerPath: {
+        current: analysis.userRole,
+        potential: ["Специалист среднего уровня", "Руководитель проектов"],
+        roadmap: "Сфокусируйтесь на развитии ключевых навыков через практику и обучение"
+      },
+      shortTermGoals: [`Начать обучение на курсе "${topCourses[0]?.title}"`],
+      longTermGoals: ["Достичь уровня эксперта в выбранной области"],
+      personalizedAdvice: `Рекомендуем начать с курса "${topCourses[0]?.title}" для укрепления базовых навыков.`
+    };
+  }
+
+  /**
+   * Определение категории курса по названию
+   */
+  _detectCourseCategory(title) {
+    const categories = {
+      'Программирование': ['python', 'javascript', 'java', 'разработчик', 'developer', 'программирование'],
+      'Дизайн': ['дизайн', 'ui', 'ux', 'графический', 'веб-дизайн'],
+      'Аналитика': ['аналитик', 'data', 'данных', 'аналитика', 'sql'],
+      'Маркетинг': ['маркетинг', 'smm', 'реклама', 'продвижение'],
+      'Управление': ['менеджер', 'управление', 'проект', 'продакт'],
+      'Финансы': ['финансы', 'бухгалтер', 'инвестиции']
+    };
+
+    const lowerTitle = title.toLowerCase();
+    for (const [category, keywords] of Object.entries(categories)) {
+      if (keywords.some(keyword => lowerTitle.includes(keyword))) {
+        return category;
+      }
+    }
+    return 'Профессиональное развитие';
+  }
+
+  /**
+   * Вызов Gemini API
    */
   async _callGeminiAPI(prompt) {
     if (!this.apiKey) {
@@ -363,7 +527,7 @@ ${JSON.stringify(analysis, null, 2)}
           }]
         }],
         generationConfig: {
-          temperature: 0.8, // Увеличена для более креативных вопросов
+          temperature: 0.8,
           topK: 40,
           topP: 0.95,
           maxOutputTokens: 2048,
@@ -381,7 +545,6 @@ ${JSON.stringify(analysis, null, 2)}
 
   /**
    * Парсинг анализа из ответа AI
-   * @private
    */
   _parseAnalysisFromResponse(response) {
     try {
@@ -398,7 +561,6 @@ ${JSON.stringify(analysis, null, 2)}
 
   /**
    * Парсинг рекомендаций из ответа AI
-   * @private
    */
   _parseRecommendationsFromResponse(response) {
     try {
@@ -415,7 +577,6 @@ ${JSON.stringify(analysis, null, 2)}
 
   /**
    * Fallback анализ
-   * @private
    */
   _getFallbackAnalysis() {
     return {
@@ -440,38 +601,42 @@ ${JSON.stringify(analysis, null, 2)}
       ],
       level: "Развивающийся",
       detailedFeedback: "На основе ваших ответов видно, что вы находитесь на стадии активного развития навыков.",
-      motivationFactors: ["Личностный рост", "Профессиональное развитие"]
+      motivationFactors: ["Личностный рост", "Профессиональное развитие"],
+      interestAreas: ["Программирование", "Аналитика"]
     };
   }
 
   /**
    * Fallback рекомендации
-   * @private
    */
   _getFallbackRecommendations(userRole = 'Специалист') {
+    const randomCourses = this.courses
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map(course => ({
+        title: course.title,
+        description: course.description || 'Курс для профессионального развития',
+        link: course.link,
+        category: this._detectCourseCategory(course.title),
+        priority: 'medium',
+        estimatedTime: '30 часов',
+        matchReason: "Подходит для вашего уровня развития"
+      }));
+
     return {
-      courses: [
-        {
-          title: "Основы профессионального развития",
-          description: "Комплексный курс для построения карьеры",
-          category: "Карьера",
-          priority: "high",
-          estimatedTime: "30 часов",
-          matchReason: "Подходит для вашего уровня"
-        }
-      ],
+      courses: randomCourses,
       skillsToImprove: [
         {
-          skill: "Тайм-менеджмент",
+          skill: "Профессиональное развитие",
           currentLevel: "Базовый",
           targetLevel: "Продвинутый",
-          actions: ["Планирование дня", "Приоритизация задач"]
+          actions: ["Пройти рекомендованные курсы", "Практиковать навыки"]
         }
       ],
       careerPath: {
         current: userRole,
-        potential: ["Специалист среднего уровня", "Руководитель проектов"],
-        roadmap: "Сфокусируйтесь на развитии ключевых навыков в течение следующих 6 месяцев"
+        potential: ["Специалист среднего уровня"],
+        roadmap: "Развивайте навыки постепенно"
       }
     };
   }
@@ -490,7 +655,6 @@ ${JSON.stringify(analysis, null, 2)}
   }
 }
 
-// Экспорт singleton instance
 const aiService = new AIService();
 export default aiService;
 
