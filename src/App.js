@@ -2,10 +2,12 @@
 import './App.css';
 import { useState } from 'react';
 import AdaptiveTestPage from './components/AdaptiveTestPage';
+import StatisticsPage from './components/StatisticsPage';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showTest, setShowTest] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,6 +24,10 @@ function App() {
 
   if (showTest) {
     return <AdaptiveTestPage onBack={backToHome} />;
+  }
+
+  if (showStats) {
+    return <StatisticsPage onBack={() => setShowStats(false)} />;
   }
 
   return (
@@ -46,9 +52,8 @@ function App() {
         </button>
         <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <a href="#start" onClick={(e) => { e.preventDefault(); startTest(); }}>Тестирование</a>
-          <a href="#stats" onClick={() => setIsMenuOpen(false)}>Статистика</a>
-          <a href="#courses" onClick={() => setIsMenuOpen(false)}>Курсы</a>
-          <a href="#login" className="login-btn" onClick={() => setIsMenuOpen(false)}>Войти</a>
+          <a href="#stats" onClick={(e) => { e.preventDefault(); setShowStats(true); }}>Статистика</a>
+          <a href="https://www.lerna.kz/" >Курсы</a>
         </div>
       </nav>
 
