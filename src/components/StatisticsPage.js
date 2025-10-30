@@ -1,50 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './TestPage.css';
-
-// Mock apiService для демонстрации
-const apiService = {
-  async getStatistics() {
-    // Имитация задержки API
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    return {
-      totalTests: 1247,
-      averageScore: 73,
-      popularCompetencies: [
-        {
-          competency: 'web_dev',
-          averageScore: 78,
-          testCount: 456,
-          popularity: 87
-        },
-        {
-          competency: 'programming',
-          averageScore: 75,
-          testCount: 398,
-          popularity: 76
-        },
-        {
-          competency: 'data_science',
-          averageScore: 71,
-          testCount: 312,
-          popularity: 65
-        },
-        {
-          competency: 'mobile_dev',
-          averageScore: 69,
-          testCount: 287,
-          popularity: 58
-        },
-        {
-          competency: 'devops',
-          averageScore: 72,
-          testCount: 234,
-          popularity: 52
-        }
-      ],
-    };
-  }
-};
+import apiService from '../services/apiService'; // Импортируем реальный API сервис
 
 function StatisticsPage({ onBack }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,11 +16,15 @@ function StatisticsPage({ onBack }) {
     try {
       setLoading(true);
       setError(null);
+      
+      // Используем реальный API сервис вместо мок-данных
       const data = await apiService.getStatistics();
+      
+      console.log('Statistics loaded:', data);
       setStats(data);
     } catch (err) {
       console.error('Error loading statistics:', err);
-      setError('Не удалось загрузить статистику. Попробуйте позже.');
+      setError('Не удалось загрузить статистику. Проверьте подключение к серверу.');
     } finally {
       setLoading(false);
     }
@@ -113,7 +73,7 @@ function StatisticsPage({ onBack }) {
         <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <a href="#start" onClick={(e) => { e.preventDefault(); onBack(); }}>Тестирование</a>
           <a href="#stats" onClick={() => setIsMenuOpen(false)}>Статистика</a>
-          <a href="https://www.lerna.kz/" >Курсы</a>
+          <a href="https://www.lerna.kz/">Курсы</a>
         </div>
       </nav>
 
@@ -135,7 +95,7 @@ function StatisticsPage({ onBack }) {
           <div className="question-card loading-container">
             <h2 className="question-text">Загрузка статистики...</h2>
             <p className="loading-text">
-              🤖 Собираем данные о тестированиях
+              🤖 Собираем данные о тестированиях из базы данных...
             </p>
           </div>
         )}
@@ -198,7 +158,7 @@ function StatisticsPage({ onBack }) {
             </div>
 
             {/* Популярные компетенции */}
-            {stats.popularCompetencies && stats.popularCompetencies.length > 0 && (
+            {stats.popularCompetencies && stats.popularCompetencies.length > 0 ? (
               <div className="detailed-results-section">
                 <h3 className="section-title">
                   🔥 Популярные компетенции
@@ -301,8 +261,14 @@ function StatisticsPage({ onBack }) {
                   ))}
                 </div>
               </div>
+            ) : (
+              <div className="question-card" style={{ textAlign: 'center' }}>
+                <h2 className="question-text">📭 Нет данных</h2>
+                <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.1rem' }}>
+                  Пока нет тестирований в базе данных. Будьте первым!
+                </p>
+              </div>
             )}
-
 
             {/* Информация о системе */}
             <div className="detailed-results-section" style={{
@@ -310,7 +276,7 @@ function StatisticsPage({ onBack }) {
               border: '1px solid rgba(139, 92, 246, 0.3)'
             }}>
               <h3 className="section-title">
-                ℹ️ О платформе
+                 О платформе
               </h3>
               <div style={{
                 color: 'rgba(255, 255, 255, 0.8)',

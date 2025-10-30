@@ -384,7 +384,7 @@ function AdaptiveTestPage({ onBack }) {
           </button>
           <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <a href="#stats" onClick={() => setIsMenuOpen(false)}>Статистика</a>
-            <a href="#courses" onClick={() => setIsMenuOpen(false)}>Курсы</a>
+          <a href="https://www.lerna.kz/">Курсы</a>
             <a href="#login" className="login-btn" onClick={() => setIsMenuOpen(false)}>Войти</a>
           </div>
         </nav>
@@ -817,7 +817,7 @@ function AdaptiveTestPage({ onBack }) {
                   </div>
                 )}
                 <div className="text-hint">
-                  Минимум 30 символов для засчитывания ответа
+                  Минимум 10 символов для засчитывания ответа
                 </div>
               </div>
             )}
@@ -837,7 +837,7 @@ function AdaptiveTestPage({ onBack }) {
                 disabled={!userAnswer || (
                   currentQuestion.type === 'text' && 
                   userAnswer && 
-                  userAnswer.trim().length < 30
+                  userAnswer.trim().length < 5
                 )}
               >
                 Ответить →

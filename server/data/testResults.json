@@ -52,5 +52,194 @@
     },
     "id": "test_1761841335658_5y6np7wzr",
     "timestamp": "2025-10-30T16:22:15.658Z"
+  },
+  {
+    "full_name": "рьплрд",
+    "user_type": "Студент",
+    "test_id": "test_1761845909336_hud3bxcs2",
+    "selected_competencies": [
+      "graphic_design",
+      "system_admin",
+      "web_dev",
+      "mobile_dev",
+      "data_science",
+      "devops",
+      "cybersecurity",
+      "project_management",
+      "cloud_computing",
+      "programming"
+    ],
+    "test_score": {
+      "overallScore": 47,
+      "totalQuestions": 15,
+      "correctAnswers": 5,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 86,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 53,
+          "level": "Средний",
+          "questionsAsked": 2,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Систематизируйте знания и практикуйтесь регулярно"
+        },
+        "devops": {
+          "score": 86,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cybersecurity": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "project_management": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "cloud_computing": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "programming": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T18:17:16.502Z"
+    },
+    "id": "test_1761848236508_xji8smb1l",
+    "timestamp": "2025-10-30T18:17:16.508Z"
+  },
+  {
+    "full_name": "jgfgl",
+    "user_type": "Преподаватель",
+    "test_id": "test_1761845909336_hud3bxcs2",
+    "selected_competencies": [
+      "project_management",
+      "cybersecurity",
+      "programming",
+      "cloud_computing"
+    ],
+    "test_score": {
+      "overallScore": 0,
+      "totalQuestions": 0,
+      "correctAnswers": 0,
+      "competencyResults": {
+        "project_management": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "cybersecurity": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "programming": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        },
+        "cloud_computing": {
+          "score": 0,
+          "level": "Начинающий",
+          "questionsAsked": 0,
+          "correctAnswers": 0,
+          "finalDifficulty": "beginner",
+          "recommendation": "Начните с базовых курсов и простых проектов"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T18:17:51.993Z"
+    },
+    "id": "test_1761848271998_15vlrv11j",
+    "timestamp": "2025-10-30T18:17:51.998Z"
+  },
+  {
+    "full_name": "2eqASD",
+    "user_type": "Преподаватель",
+    "test_id": "test_1761851607232_s0jwg0mbc",
+    "selected_competencies": [
+      "system_admin"
+    ],
+    "test_score": {
+      "overallScore": 56,
+      "totalQuestions": 3,
+      "correctAnswers": 1,
+      "competencyResults": {
+        "system_admin": {
+          "score": 56,
+          "level": "Средний",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Систематизируйте знания и практикуйтесь регулярно"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T19:13:55.876Z"
+    },
+    "id": "test_1761851635888_45p8jiug5",
+    "timestamp": "2025-10-30T19:13:55.888Z"
   }
 ]
