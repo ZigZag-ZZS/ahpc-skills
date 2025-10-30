@@ -1578,3 +1578,136 @@
     padding: 0.5rem 1rem;
   }
 }
+/* Clickable элементы */
+.clickable {
+  cursor: pointer;
+}
+
+/* Feedback Box */
+.feedback-box {
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: cardAppear 0.3s ease-out;
+  border: 2px solid;
+}
+
+.feedback-box.correct {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+.feedback-box.incorrect {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.feedback-message {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-answer {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+/* Transition Message */
+.transition-message {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Score Circle (оставляем только динамический background) */
+.score-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.score-circle-inner {
+  width: 60px;
+  height: 60px;
+  background: rgba(16, 185, 129, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Progress Bar Fill (оставляем только динамический width) */
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1.5s ease-in-out;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.progress-bar-fill.high {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.progress-bar-fill.medium {
+  background: linear-gradient(90deg, #3b82f6, #0ea5e9);
+}
+
+.progress-bar-fill.low {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.progress-bar-fill.very-low {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* Progress Fill для test header */
+.test-header .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #0ea5e9);
+  border-radius: 50px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .feedback-message {
+    font-size: 1rem;
+  }
+  
+  .feedback-answer {
+    font-size: 0.9rem;
+  }
+  
+  .score-circle {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .score-circle-inner {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-box {
+    padding: 1rem;
+  }
+  
+  .feedback-message {
+    font-size: 0.95rem;
+  }
+}

@@ -18,7 +18,6 @@ function AdaptiveTestPage({ onBack }) {
   const [selectedCompetencies, setSelectedCompetencies] = useState([]);
   const [profileStep, setProfileStep] = useState(0);
 
-  // Список доступных компетенций
   const availableCompetencies = [
     { id: 'graphic_design', name: '🎨 Графический дизайн', description: 'Работа с визуальным контентом, UI/UX дизайн' },
     { id: 'system_admin', name: '⚙️ Системное администрирование', description: 'Настройка серверов, сети, безопасность' },
@@ -139,7 +138,7 @@ function AdaptiveTestPage({ onBack }) {
         </div>
 
         <nav className="main-nav">
-          <div className="nav-brand" onClick={onBack}>
+          <div className="nav-brand clickable" onClick={onBack}>
             <span className="gradient-text">Poly</span>Skills
           </div>
         </nav>
@@ -199,7 +198,7 @@ function AdaptiveTestPage({ onBack }) {
         </div>
 
         <nav className="main-nav">
-          <div className="nav-brand" onClick={onBack}>
+          <div className="nav-brand clickable" onClick={onBack}>
             <span className="gradient-text">Poly</span>Skills
           </div>
         </nav>
@@ -282,7 +281,7 @@ function AdaptiveTestPage({ onBack }) {
         </div>
 
         <nav className="main-nav">
-          <div className="nav-brand" onClick={onBack}>
+          <div className="nav-brand clickable" onClick={onBack}>
             <span className="gradient-text">Poly</span>Skills
           </div>
         </nav>
@@ -365,7 +364,7 @@ function AdaptiveTestPage({ onBack }) {
         </div>
 
         <nav className="main-nav">
-          <div className="nav-brand" onClick={onBack}>
+          <div className="nav-brand clickable" onClick={onBack}>
             <span className="gradient-text">Poly</span>Skills
           </div>
           <button className="mobile-menu-btn" onClick={toggleMenu}>
@@ -457,10 +456,7 @@ function AdaptiveTestPage({ onBack }) {
               {Object.entries(testResults.competencyResults)
                 .sort(([,a], [,b]) => b.score - a.score)
                 .map(([competency, data], index) => (
-                  <div
-                    key={competency}
-                    className="competency-detail-card"
-                  >
+                  <div key={competency} className="competency-detail-card">
                     {index < 3 && (
                       <div className={`rank-badge ${
                         index === 0 ? 'gold' : index === 1 ? 'silver' : 'bronze'
@@ -677,7 +673,7 @@ function AdaptiveTestPage({ onBack }) {
         </div>
 
         <nav className="main-nav">
-          <div className="nav-brand" onClick={onBack}>
+          <div className="nav-brand clickable" onClick={onBack}>
             <span className="gradient-text">Poly</span>Skills
           </div>
         </nav>
@@ -705,6 +701,7 @@ function AdaptiveTestPage({ onBack }) {
       </div>
     );
   }
+
   // Экран 6: Основное тестирование
   return (
     <div className="test-page">
@@ -720,7 +717,7 @@ function AdaptiveTestPage({ onBack }) {
       </div>
 
       <nav className="main-nav">
-        <div className="nav-brand" onClick={onBack}>
+        <div className="nav-brand clickable" onClick={onBack}>
           <span className="gradient-text">Poly</span>Skills
         </div>
         <button className="mobile-menu-btn" onClick={toggleMenu}>
@@ -758,26 +755,12 @@ function AdaptiveTestPage({ onBack }) {
           <h2 className="question-text">{currentQuestion.question}</h2>
 
           {showFeedback && feedbackData && (
-            <div style={{
-              background: feedbackData.isCorrect 
-                ? 'rgba(16, 185, 129, 0.2)' 
-                : 'rgba(239, 68, 68, 0.2)',
-              border: `2px solid ${feedbackData.isCorrect ? '#10b981' : '#ef4444'}`,
-              borderRadius: '12px',
-              padding: '1.5rem',
-              marginBottom: '2rem',
-              animation: 'cardAppear 0.3s ease-out'
-            }}>
-              <div style={{ 
-                color: 'white', 
-                fontSize: '1.2rem', 
-                fontWeight: '600',
-                marginBottom: '0.5rem'
-              }}>
+            <div className={`feedback-box ${feedbackData.isCorrect ? 'correct' : 'incorrect'}`}>
+              <div className="feedback-message">
                 {feedbackData.feedback}
               </div>
               {!feedbackData.isCorrect && feedbackData.correctAnswer && (
-                <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem' }}>
+                <div className="feedback-answer">
                   Правильный ответ: {feedbackData.correctAnswer}
                 </div>
               )}
@@ -868,7 +851,7 @@ function AdaptiveTestPage({ onBack }) {
           )}
 
           {showFeedback && (
-            <div style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.7)' }}>
+            <div className="transition-message">
               Переход к следующему вопросу...
             </div>
           )}
