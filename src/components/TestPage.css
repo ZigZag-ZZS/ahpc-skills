@@ -1711,3 +1711,256 @@
     font-size: 0.95rem;
   }
 }
+/* Course Recommendations Section */
+.courses-recommendations-section {
+  margin-bottom: 2rem;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+}
+
+.courses-intro {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.courses-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.course-recommendation-block {
+  background: rgba(10, 14, 39, 0.5);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.course-recommendation-block:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.course-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.course-competency-info {
+  flex: 1;
+}
+
+.course-competency-name {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.course-score-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.score-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.score-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.score-badge.high {
+  background: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.score-badge.medium {
+  background: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+.score-badge.low {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.priority-indicator {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.priority-indicator.high {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  color: white;
+}
+
+.priority-indicator.medium {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: white;
+}
+
+.priority-indicator.normal {
+  background: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+.courses-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.course-card-compact {
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.course-card-compact:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateX(5px);
+}
+
+.course-card-content {
+  margin-bottom: 1rem;
+}
+
+.course-title {
+  color: white;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.course-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  margin: 0 0 0.8rem 0;
+  line-height: 1.4;
+}
+
+.course-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.6rem;
+  border-radius: 8px;
+  border-left: 3px solid #8b5cf6;
+}
+
+.reason-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.reason-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.course-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.course-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+
+.no-courses-message {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.no-recommendations {
+  text-align: center;
+  padding: 3rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .courses-recommendations-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .course-block-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .priority-indicator {
+    width: 100%;
+    text-align: center;
+  }
+
+  .course-card-compact {
+    padding: 1rem;
+  }
+
+  .course-title {
+    font-size: 0.95rem;
+  }
+
+  .course-description {
+    font-size: 0.8rem;
+  }
+
+  .course-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-competency-name {
+    font-size: 1.1rem;
+  }
+
+  .courses-recommendations-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .course-reason {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

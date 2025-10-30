@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './TestPage.css';
 import adaptiveTestingService from '../services/adaptiveTestingService';
 import apiService from '../services/apiService';
+import courseRecommendationService from '../services/courseRecommendationService';
 
 function AdaptiveTestPage({ onBack }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -17,6 +18,7 @@ function AdaptiveTestPage({ onBack }) {
   const [userRole, setUserRole] = useState('');
   const [selectedCompetencies, setSelectedCompetencies] = useState([]);
   const [profileStep, setProfileStep] = useState(0);
+  const [courseRecommendations, setCourseRecommendations] = useState([]);
 
   const availableCompetencies = [
     { id: 'graphic_design', name: '🎨 Графический дизайн', description: 'Работа с визуальным контентом, UI/UX дизайн' },
@@ -86,30 +88,40 @@ function AdaptiveTestPage({ onBack }) {
   };
 
   const finishTest = async () => {
-    const results = adaptiveTestingService.getFinalResults();
-    setTestResults(results);
-    
-    try {
-      await apiService.saveTestResults({
-        full_name: userName,
-        user_type: userRole,
-        test_id: testId,
-        selected_competencies: selectedCompetencies,
-        test_score: {
-          overallScore: results.overallScore,
-          totalQuestions: results.totalQuestions,
-          correctAnswers: results.correctAnswers,
-          competencyResults: results.competencyResults,
-          testType: 'adaptive',
-          completedAt: new Date().toISOString()
-        }
-      });
-    } catch (error) {
-      console.error('Ошибка сохранения:', error);
-    }
-    
-    setShowResults(true);
-  };
+  const results = adaptiveTestingService.getFinalResults();
+  setTestResults(results);
+  
+  // Получаем рекомендации курсов
+  const recommendations = courseRecommendationService.getRecommendations(
+    results,
+    userRole,
+    6
+  );
+  setCourseRecommendations(recommendations);
+  
+  try {
+    await apiService.saveTestResults({
+      full_name: userName,
+      user_type: userRole,
+      test_id: testId,
+      selected_competencies: selectedCompetencies,
+      test_score: {
+        overallScore: results.overallScore,
+        totalQuestions: results.totalQuestions,
+        correctAnswers: results.correctAnswers,
+        competencyResults: results.competencyResults,
+        testType: 'adaptive',
+        completedAt: new Date().toISOString()
+      }
+    });
+    console.log('Результаты успешно сохранены');
+  } catch (error) {
+    console.error('Ошибка сохранения:', error);
+  }
+  
+  setShowResults(true);
+};
+
 
   const handleSkip = () => {
     adaptiveTestingService.processAnswer(currentQuestion.id, '');
@@ -450,20 +462,14 @@ function AdaptiveTestPage({ onBack }) {
 
           <div className="detailed-results-section">
             <h3 className="section-title">
-              📊 Детальная оценка компетенций
+              Детальная оценка компетенций
             </h3>
             <div className="competency-details-grid">
               {Object.entries(testResults.competencyResults)
                 .sort(([,a], [,b]) => b.score - a.score)
                 .map(([competency, data], index) => (
                   <div key={competency} className="competency-detail-card">
-                    {index < 3 && (
-                      <div className={`rank-badge ${
-                        index === 0 ? 'gold' : index === 1 ? 'silver' : 'bronze'
-                      }`}>
-                        {index === 0 ? '🥇 Лучший' : index === 1 ? '🥈 Второй' : '🥉 Третий'}
-                      </div>
-                    )}
+
                     
                     <div className="competency-header">
                       <div className="competency-info">
@@ -548,93 +554,82 @@ function AdaptiveTestPage({ onBack }) {
             </div>
           </div>
 
-          <div className="recommendations-section">
-            <h3 className="section-title">
-              💡 {userRole === 'Студент' ? 'Рекомендации для обучения' : 'Рекомендации для преподавания'}
-            </h3>
-            <div className="recommendations-content">
-              {testResults.overallScore >= 80 ? (
-                <div className="achievement-header">
-                  <div className="achievement-icon">🎉</div>
-                  <p className="achievement-title">
-                    Отличные результаты!
-                  </p>
-                  <p className="achievement-description">
-                    {userRole === 'Студент' 
-                      ? 'Вы демонстрируете экспертный уровень знаний. Рекомендуем участвовать в продвинутых проектах и делиться опытом с другими студентами.'
-                      : 'Ваши знания на высоком уровне. Используйте этот потенциал для разработки углубленных учебных программ и менторства.'
-                    }
-                  </p>
-                </div>
-              ) : testResults.overallScore >= 60 ? (
-                <div className="achievement-header">
-                  <div className="achievement-icon">⭐</div>
-                  <p className="achievement-title">
-                    Хорошие результаты!
-                  </p>
-                  <p className="achievement-description">
-                    {userRole === 'Студент'
-                      ? 'У вас прочная база знаний. Сфокусируйтесь на практическом применении навыков в реальных проектах.'
-                      : 'Вы обладаете solid знаниями. Рекомендуем внедрять практические кейсы в учебный процесс.'
-                    }
-                  </p>
-                </div>
-              ) : testResults.overallScore >= 40 ? (
-                <div className="achievement-header">
-                  <div className="achievement-icon">📚</div>
-                  <p className="achievement-title">
-                    Стабильный прогресс
-                  </p>
-                  <p className="achievement-description">
-                    {userRole === 'Студент'
-                      ? 'Продолжайте систематическое обучение. Рекомендуем больше практиковаться и участвовать в учебных проектах.'
-                      : 'Рекомендуем обновить учебные материалы и включить больше практических заданий.'
-                    }
-                  </p>
-                </div>
-              ) : (
-                <div className="achievement-header">
-                  <div className="achievement-icon">🌱</div>
-                  <p className="achievement-title">
-                    Начальный уровень
-                  </p>
-                  <p className="achievement-description">
-                    {userRole === 'Студент'
-                      ? 'Рекомендуем начать с базовых курсов и постепенно наращивать сложность. Не бойтесь challenging задач!'
-                      : 'Рекомендуем пройти дополнительные курсы по предмету и обновить методические материалы.'
-                    }
-                  </p>
-                </div>
-              )}
-              
-              <div className="priority-areas-container">
-                <h4 className="priority-areas-title">
-                  🎯 Приоритетные направления для развития:
-                </h4>
-                <div className="priority-areas-grid">
-                  {Object.entries(testResults.competencyResults)
-                    .filter(([, data]) => data.score < 70)
-                    .sort(([,a], [,b]) => a.score - b.score)
-                    .slice(0, 3)
-                    .map(([comp, data]) => (
-                      <div key={comp} className="priority-area-item">
-                        <div className="priority-area-content">
-                          <span className="priority-area-name">
-                            {availableCompetencies.find(c => c.id === comp)?.name}
-                          </span>
-                          <span className="priority-area-recommendation">
-                            {data.recommendation}
-                          </span>
-                        </div>
-                        <div className="priority-area-score">
-                          {data.score}/100
-                        </div>
-                      </div>
-                    ))}
-                </div>
+
+
+<div className="courses-recommendations-section">
+  <h3 className="section-title">
+     Рекомендуемые курсы для развития
+  </h3>
+  <p className="courses-intro">
+    На основе ваших результатов мы подобрали курсы, которые помогут улучшить навыки в приоритетных областях
+  </p>
+
+  {courseRecommendations.length > 0 ? (
+    <div className="courses-grid">
+      {courseRecommendations.map((recommendation, index) => (
+        <div key={recommendation.competency} className="course-recommendation-block">
+          <div className="course-block-header">
+            <div className="course-competency-info">
+              <h4 className="course-competency-name">
+                {availableCompetencies.find(c => c.id === recommendation.competency)?.name}
+              </h4>
+              <div className="course-score-indicator">
+                <span className="score-label">Ваш уровень:</span>
+                <span className={`score-badge ${
+                  recommendation.score >= 70 ? 'high' :
+                  recommendation.score >= 40 ? 'medium' : 'low'
+                }`}>
+                  {recommendation.score}/100
+                </span>
               </div>
             </div>
+            <span className={`priority-indicator ${
+              index === 0 ? 'high' : index === 1 ? 'medium' : 'normal'
+            }`}>
+              {index === 0 ? '🔥 Приоритет' : index === 1 ? '⭐ Важно' : '💡 Рекомендуем'}
+            </span>
           </div>
+
+          {recommendation.courses.length > 0 ? (
+            <div className="courses-list">
+              {recommendation.courses.slice(0, 2).map((course, courseIndex) => (
+                <div key={courseIndex} className="course-card-compact">
+                  <div className="course-card-content">
+                    <h5 className="course-title">{course.title}</h5>
+                    <p className="course-description">
+                      {course.description?.substring(0, 120)}...
+                    </p>
+                    <div className="course-reason">
+                      <span className="reason-icon">💡</span>
+                      <span className="reason-text">{course.recommendationReason}</span>
+                    </div>
+                  </div>
+                  <a 
+                    href={course.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="course-link-btn"
+                  >
+                    Перейти к курсу →
+                  </a>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-courses-message">
+              <p>К сожалению, курсы по этой компетенции пока не найдены</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="no-recommendations">
+      <p>Рекомендации курсов временно недоступны</p>
+    </div>
+  )}
+</div>
+
 
           <div className="results-actions">
             <button className="primary-btn" onClick={() => {

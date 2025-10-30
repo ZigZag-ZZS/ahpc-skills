@@ -1,0 +1,56 @@
+[
+  {
+    "full_name": "dsfcbvn ",
+    "user_type": "Студент",
+    "test_id": "test_1761841285823_ns7at9a0r",
+    "selected_competencies": [
+      "system_admin",
+      "web_dev",
+      "graphic_design",
+      "mobile_dev"
+    ],
+    "test_score": {
+      "overallScore": 83,
+      "totalQuestions": 11,
+      "correctAnswers": 4,
+      "competencyResults": {
+        "system_admin": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 86,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T16:22:15.641Z"
+    },
+    "id": "test_1761841335658_5y6np7wzr",
+    "timestamp": "2025-10-30T16:22:15.658Z"
+  }
+]
