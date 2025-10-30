@@ -1,8 +1,8 @@
 // src/services/adaptiveTestingService.js
 
 /**
- * Сервис для адаптивного тестирования
- * Подбирает вопросы на основе компетенций и уровня пользователя
+ * Сервис для адаптивного тестирования с 100-балльной системой оценки
+ * Подбирает вопросы на основе выбранных компетенций и уровня пользователя
  */
 
 const DIFFICULTY_LEVELS = {
@@ -11,606 +11,561 @@ const DIFFICULTY_LEVELS = {
   EXPERT: 'expert'
 };
 
-const DIFFICULTY_SCORES = {
-  [DIFFICULTY_LEVELS.BEGINNER]: 1,
-  [DIFFICULTY_LEVELS.INTERMEDIATE]: 2,
-  [DIFFICULTY_LEVELS.EXPERT]: 3
-};
-
 // Банк вопросов с компетенциями и сложностью
 const QUESTION_BANK = [
-  // JavaScript - Beginner
+  // Графический дизайн
   {
-    id: 'js_b_1',
-    competency: 'JavaScript',
+    id: 'gd_b_1',
+    competency: 'graphic_design',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Что такое переменная в JavaScript?',
+    question: 'Что такое цветовая модель RGB и где она применяется?',
     type: 'multiple',
     options: [
-      'Контейнер для хранения данных',
-      'Функция для вычислений',
-      'Тип данных',
-      'Оператор сравнения'
+      'Модель для цифровых экранов',
+      'Модель для печати',
+      'Модель для веб-безопасных цветов',
+      'Модель для черно-белой графики'
     ],
-    correctAnswer: 'Контейнер для хранения данных',
+    correctAnswer: 'Модель для цифровых экранов',
     points: 10
   },
   {
-    id: 'js_b_2',
-    competency: 'JavaScript',
+    id: 'gd_b_2',
+    competency: 'graphic_design',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Какой оператор используется для присваивания значения?',
+    question: 'Что такое разрешение изображения?',
     type: 'multiple',
-    options: ['=', '==', '===', '=>'],
-    correctAnswer: '=',
+    options: [
+      'Количество пикселей на дюйм',
+      'Размер файла изображения',
+      'Цветовая глубина',
+      'Физический размер изображения'
+    ],
+    correctAnswer: 'Количество пикселей на дюйм',
     points: 10
   },
   {
-    id: 'js_b_3',
-    competency: 'JavaScript',
-    difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Как вывести текст в консоль?',
-    type: 'multiple',
-    options: ['console.log()', 'print()', 'echo()', 'alert()'],
-    correctAnswer: 'console.log()',
-    points: 10
-  },
-
-  // JavaScript - Intermediate
-  {
-    id: 'js_i_1',
-    competency: 'JavaScript',
+    id: 'gd_i_1',
+    competency: 'graphic_design',
     difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Что такое замыкание (closure) в JavaScript?',
+    question: 'Объясните разницу между векторной и растровой графикой',
     type: 'text',
-    correctAnswer: 'closure',
+    hint: 'Опишите основные характеристики и области применения',
     points: 20,
-    hint: 'Функция, которая имеет доступ к переменным внешней функции'
+    minLength: 15
   },
   {
-    id: 'js_i_2',
-    competency: 'JavaScript',
-    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Чем отличается let от var?',
-    type: 'multiple',
-    options: [
-      'let имеет блочную область видимости',
-      'let работает быстрее',
-      'let не может быть переопределена',
-      'Нет разницы'
-    ],
-    correctAnswer: 'let имеет блочную область видимости',
-    points: 20
-  },
-  {
-    id: 'js_i_3',
-    competency: 'JavaScript',
-    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Что вернет typeof null?',
-    type: 'multiple',
-    options: ['object', 'null', 'undefined', 'number'],
-    correctAnswer: 'object',
-    points: 20
+    id: 'gd_e_1',
+    competency: 'graphic_design',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Какие принципы accessibility важны для веб-дизайна?',
+    type: 'text',
+    hint: 'Учитывайте контраст, навигацию, семантику',
+    points: 30,
+    minLength: 15
   },
 
-  // JavaScript - Expert
+  // Системное администрирование
   {
-    id: 'js_e_1',
-    competency: 'JavaScript',
-    difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Объясните Event Loop в JavaScript',
-    type: 'text',
-    correctAnswer: 'event loop',
-    points: 30,
-    hint: 'Механизм обработки асинхронных операций'
-  },
-  {
-    id: 'js_e_2',
-    competency: 'JavaScript',
-    difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Что такое Symbol в JavaScript и зачем он нужен?',
-    type: 'text',
-    correctAnswer: 'symbol',
-    points: 30,
-    hint: 'Уникальный и неизменяемый примитивный тип данных'
-  },
-
-  // React - Beginner
-  {
-    id: 'react_b_1',
-    competency: 'React',
+    id: 'sa_b_1',
+    competency: 'system_admin',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Что такое JSX?',
+    question: 'Что такое DNS и какова его основная функция?',
     type: 'multiple',
     options: [
-      'Синтаксическое расширение JavaScript',
-      'Новый язык программирования',
-      'Библиотека для стилизации',
-      'Фреймворк для бэкенда'
+      'Преобразование доменных имен в IP-адреса',
+      'Защита от сетевых атак',
+      'Ускорение загрузки веб-страниц',
+      'Управление базами данных'
     ],
-    correctAnswer: 'Синтаксическое расширение JavaScript',
+    correctAnswer: 'Преобразование доменных имен в IP-адреса',
     points: 10
   },
   {
-    id: 'react_b_2',
-    competency: 'React',
+    id: 'sa_b_2',
+    competency: 'system_admin',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Какой хук используется для создания состояния?',
+    question: 'Для чего используется команда ping?',
     type: 'multiple',
-    options: ['useState', 'useEffect', 'useContext', 'useReducer'],
-    correctAnswer: 'useState',
+    options: [
+      'Проверка доступности сетевого узла',
+      'Настройка сети',
+      'Установка соединения',
+      'Измерение скорости интернета'
+    ],
+    correctAnswer: 'Проверка доступности сетевого узла',
     points: 10
   },
-
-  // React - Intermediate
   {
-    id: 'react_i_1',
-    competency: 'React',
+    id: 'sa_i_1',
+    competency: 'system_admin',
     difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'В чем разница между props и state?',
+    question: 'Опишите процесс диагностики проблемы с высокой загрузкой CPU',
     type: 'text',
-    correctAnswer: 'props state',
+    hint: 'Какие команды и инструменты вы используете?',
     points: 20,
-    hint: 'props приходят извне, state управляется внутри компонента'
+    minLength: 15
   },
   {
-    id: 'react_i_2',
-    competency: 'React',
-    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Когда выполняется useEffect без зависимостей?',
+    id: 'sa_e_1',
+    competency: 'system_admin',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Какие компоненты включаются в отказоустойчивую инфраструктуру для веб-приложения?',
+    type: 'text',
+    hint: 'Рассмотрите балансировщики нагрузки, репликацию, мониторинг',
+    points: 30,
+    minLength: 15
+  },
+
+  // Веб-разработка
+  {
+    id: 'wd_b_1',
+    competency: 'web_dev',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое HTML и для чего он используется?',
     type: 'multiple',
     options: [
-      'После каждого рендера',
-      'Только один раз',
-      'Перед каждым рендером',
-      'Никогда'
+      'Язык разметки для создания структуры веб-страниц',
+      'Язык программирования для серверной части',
+      'База данных для хранения контента',
+      'Фреймворк для стилизации'
     ],
-    correctAnswer: 'После каждого рендера',
-    points: 20
-  },
-
-  // React - Expert
-  {
-    id: 'react_e_1',
-    competency: 'React',
-    difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Объясните работу виртуального DOM и алгоритма reconciliation',
-    type: 'text',
-    correctAnswer: 'virtual dom',
-    points: 30,
-    hint: 'Оптимизация обновления реального DOM'
-  },
-
-  // Python - Beginner
-  {
-    id: 'py_b_1',
-    competency: 'Python',
-    difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Какой тип данных используется для хранения последовательности элементов?',
-    type: 'multiple',
-    options: ['list', 'int', 'str', 'bool'],
-    correctAnswer: 'list',
+    correctAnswer: 'Язык разметки для создания структуры веб-страниц',
     points: 10
   },
   {
-    id: 'py_b_2',
-    competency: 'Python',
+    id: 'wd_b_2',
+    competency: 'web_dev',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Как создать функцию в Python?',
-    type: 'multiple',
-    options: ['def function():', 'function():', 'create function():', 'func():'],
-    correctAnswer: 'def function():',
-    points: 10
-  },
-
-  // Python - Intermediate
-  {
-    id: 'py_i_1',
-    competency: 'Python',
-    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Что такое list comprehension?',
-    type: 'text',
-    correctAnswer: 'comprehension',
-    points: 20,
-    hint: 'Компактный способ создания списков'
-  },
-  {
-    id: 'py_i_2',
-    competency: 'Python',
-    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Чем отличается tuple от list?',
+    question: 'Что такое CSS?',
     type: 'multiple',
     options: [
-      'tuple неизменяемый',
-      'tuple быстрее',
-      'tuple больше',
-      'Нет разницы'
+      'Язык для описания внешнего вида документов',
+      'Язык программирования',
+      'Система управления базами данных',
+      'Фреймворк для JavaScript'
     ],
-    correctAnswer: 'tuple неизменяемый',
-    points: 20
-  },
-
-  // Python - Expert
-  {
-    id: 'py_e_1',
-    competency: 'Python',
-    difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Объясните GIL (Global Interpreter Lock) в Python',
-    type: 'text',
-    correctAnswer: 'gil',
-    points: 30,
-    hint: 'Механизм синхронизации в CPython'
-  },
-
-  // Soft Skills - Beginner
-  {
-    id: 'soft_b_1',
-    competency: 'Коммуникация',
-    difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Оцените свои навыки работы в команде',
-    type: 'rating',
+    correctAnswer: 'Язык для описания внешнего вида документов',
     points: 10
   },
   {
-    id: 'soft_b_2',
-    competency: 'Коммуникация',
-    difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Как часто вы делитесь знаниями с коллегами?',
-    type: 'multiple',
-    options: ['Регулярно', 'Иногда', 'Редко', 'Никогда'],
-    correctAnswer: null,
-    points: 10
-  },
-
-  // Soft Skills - Intermediate
-  {
-    id: 'soft_i_1',
-    competency: 'Коммуникация',
+    id: 'wd_i_1',
+    competency: 'web_dev',
     difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'Опишите ситуацию, когда вам пришлось разрешить конфликт в команде',
+    question: 'Объясните концепцию Virtual DOM в React и ее преимущества',
     type: 'text',
-    correctAnswer: null,
+    hint: 'Сравните с прямыми манипуляциями DOM',
     points: 20,
-    hint: 'Подробно опишите вашу роль и результат'
+    minLength: 15
   },
-
-  // Soft Skills - Expert
   {
-    id: 'soft_e_1',
-    competency: 'Лидерство',
+    id: 'wd_e_1',
+    competency: 'web_dev',
     difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Опишите ваш опыт менторства и руководства командой',
+    question: 'В чем преимущества микросервисной архитектуры?',
     type: 'text',
-    correctAnswer: null,
+    hint: 'Сравните с монолитной архитектурой',
     points: 30,
-    hint: 'Примеры проектов и достижений команды'
+    minLength: 15
   },
 
-  // Базы данных - Beginner
+  // Мобильная разработка
   {
-    id: 'db_b_1',
-    competency: 'Базы данных',
+    id: 'md_b_1',
+    competency: 'mobile_dev',
     difficulty: DIFFICULTY_LEVELS.BEGINNER,
-    question: 'Что такое SQL?',
+    question: 'В чем основное различие между нативной и кроссплатформенной разработкой?',
     type: 'multiple',
     options: [
-      'Язык структурированных запросов',
-      'База данных',
-      'Сервер',
-      'Протокол передачи данных'
+      'Нативная использует специфичные для платформы языки',
+      'Кроссплатформенная требует больше ресурсов',
+      'Нативная медленнее работает',
+      'Кроссплатформенная не поддерживает аппаратные функции'
     ],
-    correctAnswer: 'Язык структурированных запросов',
+    correctAnswer: 'Нативная использует специфичные для платформы языки',
     points: 10
   },
-
-  // Базы данных - Intermediate
   {
-    id: 'db_i_1',
-    competency: 'Базы данных',
+    id: 'md_i_1',
+    competency: 'mobile_dev',
     difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
-    question: 'В чем разница между INNER JOIN и LEFT JOIN?',
+    question: 'Как вы оптимизируете производительность мобильного приложения?',
     type: 'text',
-    correctAnswer: 'join',
+    hint: 'Рассмотрите аспекты памяти, сети и UI',
     points: 20,
-    hint: 'Как обрабатываются несовпадающие записи'
+    minLength: 15
   },
 
-  // Базы данных - Expert
+  // Data Science
   {
-    id: 'db_e_1',
-    competency: 'Базы данных',
-    difficulty: DIFFICULTY_LEVELS.EXPERT,
-    question: 'Объясните принципы нормализации баз данных',
+    id: 'ds_b_1',
+    competency: 'data_science',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое переобучение (overfitting) в машинном обучении?',
+    type: 'multiple',
+    options: [
+      'Модель слишком хорошо учится на тренировочных данных',
+      'Модель не может обучиться на данных',
+      'Модель использует слишком много признаков',
+      'Модель работает слишком медленно'
+    ],
+    correctAnswer: 'Модель слишком хорошо учится на тренировочных данных',
+    points: 10
+  },
+  {
+    id: 'ds_i_1',
+    competency: 'data_science',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните разницу между supervised и unsupervised learning',
     type: 'text',
-    correctAnswer: 'нормализация',
-    points: 30,
-    hint: '1NF, 2NF, 3NF и их назначение'
+    hint: 'Приведите примеры алгоритмов для каждого типа',
+    points: 20,
+    minLength: 15
+  },
+
+  // DevOps
+  {
+    id: 'do_b_1',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое CI/CD и какова его основная цель?',
+    type: 'multiple',
+    options: [
+      'Автоматизация процессов разработки и развертывания',
+      'Управление базами данных',
+      'Мониторинг производительности',
+      'Тестирование безопасности'
+    ],
+    correctAnswer: 'Автоматизация процессов разработки и развертывания',
+    points: 10
+  },
+  {
+    id: 'do_i_1',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Опишите преимущества использования контейнеризации с Docker',
+    type: 'text',
+    hint: 'Рассмотрите изоляцию, переносимость и масштабируемость',
+    points: 20,
+    minLength: 15
   }
 ];
 
 class AdaptiveTestingService {
   constructor() {
     this.questionBank = QUESTION_BANK;
-    this.competencies = [...new Set(QUESTION_BANK.map(q => q.competency))];
     this.reset();
   }
 
-  /**
-   * Сброс состояния теста
-   */
   reset() {
-    this.currentState = {
-      askedQuestions: [],
-      competencyLevels: {},
-      competencyScores: {},
-      totalQuestions: 0,
-      correctAnswers: 0,
-      userAnswers: {}
-    };
+    this.userCompetencies = new Map();
+    this.askedQuestions = new Set();
+    this.currentQuestionIndex = 0;
+    this.selectedCompetencies = [];
+    this.testHistory = [];
+    this.competencyRotation = [];
+  }
 
-    // Инициализация уровней компетенций (начинаем со среднего)
-    this.competencies.forEach(comp => {
-      this.currentState.competencyLevels[comp] = DIFFICULTY_LEVELS.INTERMEDIATE;
-      this.currentState.competencyScores[comp] = {
-        total: 0,
-        correct: 0,
-        questions: []
-      };
+  setSelectedCompetencies(competencies) {
+    this.selectedCompetencies = competencies;
+    this.competencyRotation = [...competencies];
+    
+    // Инициализируем tracking для каждой выбранной компетенции
+    competencies.forEach(comp => {
+      this.userCompetencies.set(comp, {
+        level: DIFFICULTY_LEVELS.BEGINNER,
+        questionsAsked: 0,
+        correctAnswers: 0,
+        currentDifficulty: DIFFICULTY_LEVELS.BEGINNER,
+        score: 0,
+        maxPossibleScore: 0,
+        completed: false
+      });
     });
   }
 
-  /**
-   * Получение следующего вопроса на основе текущего состояния
-   */
   getNextQuestion() {
-    const MAX_QUESTIONS = 25;
-    
-    if (this.currentState.totalQuestions >= MAX_QUESTIONS) {
+    // Проверяем максимальное количество вопросов
+    const MAX_QUESTIONS = 15;
+    if (this.currentQuestionIndex >= MAX_QUESTIONS) {
+      console.log('Maximum questions reached:', MAX_QUESTIONS);
       return null;
     }
 
-    // Выбираем компетенцию для следующего вопроса
-    const targetCompetency = this._selectNextCompetency();
-    const targetDifficulty = this.currentState.competencyLevels[targetCompetency];
-
-    // Находим подходящий вопрос
-    const availableQuestions = this.questionBank.filter(q => 
-      q.competency === targetCompetency &&
-      q.difficulty === targetDifficulty &&
-      !this.currentState.askedQuestions.includes(q.id)
-    );
-
-    // Если нет вопросов нужной сложности, берем ближайшие
-    let question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-    
-    if (!question) {
-      question = this._findAlternativeQuestion(targetCompetency);
+    if (this.selectedCompetencies.length === 0) {
+      console.error('No competencies selected');
+      return null;
     }
 
-    if (question) {
-      this.currentState.askedQuestions.push(question.id);
-      this.currentState.totalQuestions++;
+    // Используем ротацию компетенций для равномерного распределения
+    let attempts = 0;
+    const maxAttempts = this.selectedCompetencies.length * 2;
+    
+    while (attempts < maxAttempts) {
+      attempts++;
+      
+      // Получаем следующую компетенцию из ротации
+      const nextCompetency = this.competencyRotation[0];
+      if (!nextCompetency) {
+        console.log('No competency in rotation');
+        break;
+      }
+
+      const competencyData = this.userCompetencies.get(nextCompetency);
+      
+      // Если компетенция завершена, переходим к следующей
+      if (competencyData.completed) {
+        this.rotateCompetency();
+        continue;
+      }
+
+      const difficulty = competencyData.currentDifficulty;
+
+      // Ищем доступные вопросы для этой компетенции и уровня сложности
+      const availableQuestions = this.questionBank.filter(q => 
+        q.competency === nextCompetency && 
+        q.difficulty === difficulty &&
+        !this.askedQuestions.has(q.id)
+      );
+
+      if (availableQuestions.length > 0) {
+        // Выбираем случайный вопрос из доступных
+        const question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+        this.askedQuestions.add(question.id);
+        competencyData.questionsAsked++;
+        competencyData.maxPossibleScore += question.points;
+        this.currentQuestionIndex++;
+        
+        // Перемещаем компетенцию в конец ротации
+        this.rotateCompetency();
+        
+        console.log(`Question ${this.currentQuestionIndex}: ${question.competency} - ${question.difficulty}`);
+        return question;
+      } else {
+        // Если нет вопросов для текущей сложности, пытаемся найти вопросы других сложностей
+        const anyAvailableQuestions = this.questionBank.filter(q => 
+          q.competency === nextCompetency &&
+          !this.askedQuestions.has(q.id)
+        );
+
+        if (anyAvailableQuestions.length > 0) {
+          // Повышаем сложность и пробуем снова
+          this.adaptDifficulty(nextCompetency, true);
+        } else {
+          // Если совсем нет вопросов, помечаем компетенцию как завершенную
+          competencyData.completed = true;
+          console.log(`No questions available for ${nextCompetency}, marking as completed`);
+        }
+        
+        this.rotateCompetency();
+      }
     }
 
-    return question;
+    console.log('No questions found after all attempts');
+    return null;
   }
 
-  /**
-   * Выбор следующей компетенции для тестирования
-   * Приоритет отдается компетенциям с меньшим количеством вопросов
-   */
-  _selectNextCompetency() {
-    const competencyQuestionCounts = {};
-    
-    this.competencies.forEach(comp => {
-      competencyQuestionCounts[comp] = 
-        this.currentState.competencyScores[comp].questions.length;
-    });
-
-    // Сортируем по количеству заданных вопросов
-    const sortedCompetencies = Object.entries(competencyQuestionCounts)
-      .sort((a, b) => a[1] - b[1]);
-
-    return sortedCompetencies[0][0];
+  rotateCompetency() {
+    if (this.competencyRotation.length > 1) {
+      const first = this.competencyRotation.shift();
+      this.competencyRotation.push(first);
+    }
   }
 
-  /**
-   * Поиск альтернативного вопроса, если нет вопросов нужной сложности
-   */
-  _findAlternativeQuestion(competency) {
-    const availableQuestions = this.questionBank.filter(q => 
-      q.competency === competency &&
-      !this.currentState.askedQuestions.includes(q.id)
-    );
+  adaptDifficulty(competency, forceIncrease = false) {
+    const data = this.userCompetencies.get(competency);
+    if (!data) return;
 
-    return availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+    if (forceIncrease) {
+      // Принудительное повышение сложности при отсутствии вопросов
+      const difficulties = Object.values(DIFFICULTY_LEVELS);
+      const currentIndex = difficulties.indexOf(data.currentDifficulty);
+      if (currentIndex < difficulties.length - 1) {
+        data.currentDifficulty = difficulties[currentIndex + 1];
+        console.log(`Forced difficulty increase to ${data.currentDifficulty} for ${competency}`);
+      } else {
+        data.completed = true;
+        console.log(`Competency ${competency} reached maximum difficulty`);
+      }
+      return;
+    }
+
+    // Адаптация на основе точности ответов
+    const accuracy = data.questionsAsked > 0 ? data.correctAnswers / data.questionsAsked : 0;
+
+    if (accuracy > 0.7 && data.currentDifficulty !== DIFFICULTY_LEVELS.EXPERT) {
+      // Повышаем сложность если точность высокая
+      const difficulties = Object.values(DIFFICULTY_LEVELS);
+      const currentIndex = difficulties.indexOf(data.currentDifficulty);
+      if (currentIndex < difficulties.length - 1) {
+        data.currentDifficulty = difficulties[currentIndex + 1];
+        console.log(`Increased difficulty to ${data.currentDifficulty} for ${competency}`);
+      }
+    } else if (accuracy < 0.4 && data.questionsAsked >= 2 && data.currentDifficulty !== DIFFICULTY_LEVELS.BEGINNER) {
+      // Понижаем сложность если точность низкая и есть достаточно ответов
+      const difficulties = Object.values(DIFFICULTY_LEVELS);
+      const currentIndex = difficulties.indexOf(data.currentDifficulty);
+      if (currentIndex > 0) {
+        data.currentDifficulty = difficulties[currentIndex - 1];
+        console.log(`Decreased difficulty to ${data.currentDifficulty} for ${competency}`);
+      }
+    }
   }
 
-  /**
-   * Обработка ответа пользователя
-   */
   processAnswer(questionId, userAnswer) {
     const question = this.questionBank.find(q => q.id === questionId);
-    if (!question) return null;
-
-    const isCorrect = this._evaluateAnswer(question, userAnswer);
-    const competency = question.competency;
-
-    // Сохраняем ответ
-    this.currentState.userAnswers[questionId] = {
-      answer: userAnswer,
-      correct: isCorrect,
-      question: question
-    };
-
-    // Обновляем статистику компетенции
-    this.currentState.competencyScores[competency].total++;
-    if (isCorrect) {
-      this.currentState.competencyScores[competency].correct++;
-      this.currentState.correctAnswers++;
+    if (!question) {
+      console.error('Question not found:', questionId);
+      return { isCorrect: false, feedback: 'Ошибка системы' };
     }
-    
-    this.currentState.competencyScores[competency].questions.push({
-      questionId,
-      correct: isCorrect,
-      difficulty: question.difficulty,
-      points: isCorrect ? question.points : 0
-    });
 
-    // Адаптация сложности
-    this._adaptDifficulty(competency, isCorrect);
+    const competencyData = this.userCompetencies.get(question.competency);
+    let isCorrect = false;
+    let feedback = '';
+
+    // Оценка ответа в зависимости от типа вопроса
+    switch (question.type) {
+      case 'multiple':
+        isCorrect = userAnswer === question.correctAnswer;
+        feedback = isCorrect 
+          ? '✅ Правильно! Отличный ответ.' 
+          : `❌ Неверно. Правильный ответ: ${question.correctAnswer}`;
+        break;
+
+      case 'text':
+        // Для текстовых ответов проверяем минимальную длину как базовый критерий
+        const minLength = question.minLength || 15;
+        const meetsLength = userAnswer && userAnswer.trim().length >= minLength;
+        isCorrect = meetsLength;
+        
+        if (meetsLength) {
+          const lengthBonus = Math.min((userAnswer.length / minLength) - 1, 0.3);
+          const basePoints = question.points * 0.7;
+          const bonusPoints = question.points * 0.3 * lengthBonus;
+          competencyData.score += basePoints + bonusPoints;
+          feedback = '✅ Ответ принят! Спасибо за развернутый ответ.';
+        } else {
+          feedback = `❌ Ответ слишком краткий. Минимум ${minLength} символов.`;
+        }
+        break;
+
+      case 'rating':
+        isCorrect = userAnswer >= 4;
+        const ratingFeedback = {
+          1: 'Нужно больше практики в этой области',
+          2: 'Базовое понимание присутствует',
+          3: 'Средний уровень знаний',
+          4: 'Хорошее владение темой',
+          5: 'Отличное понимание предмета'
+        };
+        feedback = ratingFeedback[userAnswer] || 'Спасибо за оценку!';
+        
+        if (isCorrect) {
+          competencyData.score += question.points * (userAnswer / 5);
+        }
+        break;
+
+      default:
+        console.warn('Unknown question type:', question.type);
+        isCorrect = false;
+        feedback = 'Неизвестный тип вопроса';
+        break;
+    }
+
+    // Обновляем статистику
+    if (isCorrect && question.type !== 'text') {
+      competencyData.correctAnswers++;
+      competencyData.score += question.points;
+    }
+
+    // Адаптируем сложность после ответа
+    this.adaptDifficulty(question.competency);
+
+    this.testHistory.push({
+      questionId,
+      userAnswer,
+      isCorrect,
+      timestamp: new Date().toISOString(),
+      competency: question.competency
+    });
 
     return {
       isCorrect,
+      feedback,
       correctAnswer: question.correctAnswer,
-      feedback: this._generateFeedback(question, isCorrect)
+      pointsEarned: isCorrect ? question.points : 0
     };
   }
 
-  /**
-   * Оценка правильности ответа
-   */
-  _evaluateAnswer(question, userAnswer) {
-    if (question.type === 'rating') {
-      return true; // Рейтинговые вопросы всегда засчитываются
-    }
-
-    if (question.type === 'multiple' && question.correctAnswer) {
-      return userAnswer === question.correctAnswer;
-    }
-
-    if (question.type === 'text' && question.correctAnswer) {
-      const answer = userAnswer.toLowerCase().trim();
-      const correct = question.correctAnswer.toLowerCase();
-      // Проверяем наличие ключевых слов
-      return answer.includes(correct) && answer.length >= 30;
-    }
-
-    return true; // Для открытых вопросов без правильного ответа
+  getProgress() {
+    const MAX_QUESTIONS = 15;
+    return {
+      current: this.currentQuestionIndex,
+      total: MAX_QUESTIONS,
+      percentage: Math.min((this.currentQuestionIndex / MAX_QUESTIONS) * 100, 100)
+    };
   }
 
-  /**
-   * Адаптация сложности вопросов
-   */
-  _adaptDifficulty(competency, isCorrect) {
-    const currentLevel = this.currentState.competencyLevels[competency];
-    const scores = this.currentState.competencyScores[competency];
-    
-    // Получаем последние 3 ответа по этой компетенции
-    const recentAnswers = scores.questions.slice(-3);
-    const recentCorrect = recentAnswers.filter(a => a.correct).length;
-
-    // Логика адаптации
-    if (recentCorrect >= 2) {
-      // Повышаем сложность
-      if (currentLevel === DIFFICULTY_LEVELS.BEGINNER) {
-        this.currentState.competencyLevels[competency] = DIFFICULTY_LEVELS.INTERMEDIATE;
-      } else if (currentLevel === DIFFICULTY_LEVELS.INTERMEDIATE) {
-        this.currentState.competencyLevels[competency] = DIFFICULTY_LEVELS.EXPERT;
-      }
-    } else if (recentCorrect === 0 && recentAnswers.length >= 2) {
-      // Понижаем сложность
-      if (currentLevel === DIFFICULTY_LEVELS.EXPERT) {
-        this.currentState.competencyLevels[competency] = DIFFICULTY_LEVELS.INTERMEDIATE;
-      } else if (currentLevel === DIFFICULTY_LEVELS.INTERMEDIATE) {
-        this.currentState.competencyLevels[competency] = DIFFICULTY_LEVELS.BEGINNER;
-      }
-    }
-  }
-
-  /**
-   * Генерация обратной связи по ответу
-   */
-  _generateFeedback(question, isCorrect) {
-    if (isCorrect) {
-      const feedbacks = [
-        '✅ Отлично! Вы хорошо разбираетесь в этой теме.',
-        '🎯 Правильно! Продолжайте в том же духе.',
-        '⭐ Верно! Вы демонстрируете отличные знания.',
-        '💪 Превосходно! Так держать!'
-      ];
-      return feedbacks[Math.floor(Math.random() * feedbacks.length)];
-    } else {
-      return '📚 Не совсем верно. Рекомендуем изучить эту тему подробнее.';
-    }
-  }
-
-  /**
-   * Получение финальных результатов
-   */
   getFinalResults() {
-    const results = {
-      totalQuestions: this.currentState.totalQuestions,
-      correctAnswers: this.currentState.correctAnswers,
-      overallScore: Math.round(
-        (this.currentState.correctAnswers / this.currentState.totalQuestions) * 100
-      ),
-      competencyResults: {}
-    };
+    const competencyResults = {};
+    let totalScore = 0;
+    let totalQuestions = 0;
+    let totalCorrectAnswers = 0;
 
-    // Анализ по каждой компетенции
-    Object.keys(this.currentState.competencyScores).forEach(comp => {
-      const score = this.currentState.competencyScores[comp];
-      
-      if (score.total === 0) {
-        results.competencyResults[comp] = {
-          level: 'Не оценивалось',
-          score: 0,
-          questionsAsked: 0,
-          correctAnswers: 0
-        };
-        return;
-      }
+    this.userCompetencies.forEach((data, competency) => {
+      // Нормализуем score к 100-балльной системе
+      const normalizedScore = data.maxPossibleScore > 0 
+        ? Math.min((data.score / data.maxPossibleScore) * 100, 100)
+        : 0;
 
-      const accuracy = (score.correct / score.total) * 100;
-      const finalLevel = this.currentState.competencyLevels[comp];
-      
-      // Определяем финальный уровень на основе точности и текущей сложности
-      let level = 'Начинающий';
-      if (finalLevel === DIFFICULTY_LEVELS.EXPERT && accuracy >= 70) {
-        level = 'Эксперт';
-      } else if (finalLevel === DIFFICULTY_LEVELS.EXPERT || 
-                (finalLevel === DIFFICULTY_LEVELS.INTERMEDIATE && accuracy >= 70)) {
-        level = 'Продвинутый';
-      } else if (finalLevel === DIFFICULTY_LEVELS.INTERMEDIATE || accuracy >= 50) {
-        level = 'Средний';
-      }
+      // Определяем уровень владения
+      const level = normalizedScore >= 85 ? 'Эксперт' :
+                   normalizedScore >= 70 ? 'Продвинутый' :
+                   normalizedScore >= 50 ? 'Средний' : 'Начинающий';
 
-      results.competencyResults[comp] = {
-        level,
-        score: Math.round(accuracy),
-        questionsAsked: score.total,
-        correctAnswers: score.correct,
-        difficulty: finalLevel
+      // Рекомендации на основе уровня
+      const recommendations = {
+        'Эксперт': 'Продолжайте углублять знания и делиться опытом',
+        'Продвинутый': 'Развивайте практические навыки через реальные проекты',
+        'Средний': 'Систематизируйте знания и практикуйтесь регулярно',
+        'Начинающий': 'Начните с базовых курсов и простых проектов'
       };
+
+      competencyResults[competency] = {
+        score: Math.round(normalizedScore),
+        level,
+        questionsAsked: data.questionsAsked,
+        correctAnswers: data.correctAnswers,
+        finalDifficulty: data.currentDifficulty,
+        recommendation: recommendations[level]
+      };
+
+      totalScore += normalizedScore;
+      totalQuestions += data.questionsAsked;
+      totalCorrectAnswers += data.correctAnswers;
     });
 
-    return results;
-  }
+    const overallScore = this.userCompetencies.size > 0 
+      ? Math.round(totalScore / this.userCompetencies.size)
+      : 0;
 
-  /**
-   * Получение прогресса теста
-   */
-  getProgress() {
-    const MAX_QUESTIONS = 25;
     return {
-      current: this.currentState.totalQuestions,
-      total: MAX_QUESTIONS,
-      percentage: Math.round((this.currentState.totalQuestions / MAX_QUESTIONS) * 100)
+      overallScore,
+      totalQuestions,
+      correctAnswers: totalCorrectAnswers,
+      competencyResults,
+      testHistory: this.testHistory
     };
   }
 
-  /**
-   * Получение статистики компетенций
-   */
-  getCompetencyStats() {
-    return this.currentState.competencyScores;
+  getAvailableCompetencies() {
+    return [...new Set(this.questionBank.map(q => q.competency))];
   }
 }
 
-// Экспорт singleton
+// Создаем экземпляр сервиса
 const adaptiveTestingService = new AdaptiveTestingService();
-export default adaptiveTestingService;
 
-// Экспорт констант и класса
-export { AdaptiveTestingService, DIFFICULTY_LEVELS, DIFFICULTY_SCORES };
+// Экспортируем сервис и константы
+export { AdaptiveTestingService, DIFFICULTY_LEVELS };
+export default adaptiveTestingService;
