@@ -26,3 +26,4 @@ parser.py
 /docs
 /data
 /server/node_modules
+server/data/testResults.json

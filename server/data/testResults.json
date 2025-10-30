@@ -241,5 +241,32 @@
     },
     "id": "test_1761851635888_45p8jiug5",
     "timestamp": "2025-10-30T19:13:55.888Z"
+  },
+  {
+    "full_name": "WFSDVSZERBV",
+    "user_type": "Студент",
+    "test_id": "test_1761851730064_ql9j6f0bf",
+    "selected_competencies": [
+      "graphic_design"
+    ],
+    "test_score": {
+      "overallScore": 83,
+      "totalQuestions": 3,
+      "correctAnswers": 1,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T19:22:24.863Z"
+    },
+    "id": "test_1761852144878_26ysweow2",
+    "timestamp": "2025-10-30T19:22:24.878Z"
   }
 ]

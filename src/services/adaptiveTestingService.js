@@ -248,6 +248,502 @@ const QUESTION_BANK = [
     hint: 'Рассмотрите изоляцию, переносимость и масштабируемость',
     points: 20,
     minLength: 15
+  },
+  // DevOps
+  {
+    id: 'do_b_1',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое CI/CD и какова его основная цель?',
+    type: 'multiple',
+    options: [
+      'Автоматизация процессов разработки и развертывания',
+      'Управление базами данных',
+      'Мониторинг производительности',
+      'Тестирование безопасности'
+    ],
+    correctAnswer: 'Автоматизация процессов разработки и развертывания',
+    points: 10
+  },
+  {
+    id: 'do_b_2',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое контейнер в контексте Docker?',
+    type: 'multiple',
+    options: [
+      'Изолированная среда для запуска приложений',
+      'Виртуальная машина',
+      'Система управления версиями',
+      'База данных'
+    ],
+    correctAnswer: 'Изолированная среда для запуска приложений',
+    points: 10
+  },
+  {
+    id: 'do_i_1',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Опишите преимущества использования контейнеризации с Docker',
+    type: 'text',
+    hint: 'Рассмотрите изоляцию, переносимость и масштабируемость',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'do_i_2',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Какие инструменты используются для мониторинга в DevOps?',
+    type: 'text',
+    hint: 'Упомяните популярные решения и их возможности',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'do_e_1',
+    competency: 'devops',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Как реализовать blue-green deployment и в чем его преимущества?',
+    type: 'text',
+    hint: 'Опишите процесс и сравните с другими стратегиями развертывания',
+    points: 30,
+    minLength: 15
+  },
+
+  // Управление проектами
+  {
+    id: 'pm_b_1',
+    competency: 'project_management',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое Agile методология?',
+    type: 'multiple',
+    options: [
+      'Итеративный подход к разработке с гибкостью',
+      'Жесткий план проекта без изменений',
+      'Метод управления финансами',
+      'Система контроля версий'
+    ],
+    correctAnswer: 'Итеративный подход к разработке с гибкостью',
+    points: 10
+  },
+  {
+    id: 'pm_b_2',
+    competency: 'project_management',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое спринт в Scrum?',
+    type: 'multiple',
+    options: [
+      'Фиксированный период времени для выполнения задач',
+      'Финальная стадия проекта',
+      'Тип встречи команды',
+      'Документ с требованиями'
+    ],
+    correctAnswer: 'Фиксированный период времени для выполнения задач',
+    points: 10
+  },
+  {
+    id: 'pm_i_1',
+    competency: 'project_management',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните разницу между Scrum и Kanban',
+    type: 'text',
+    hint: 'Сравните подходы к планированию, ролям и процессам',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'pm_i_2',
+    competency: 'project_management',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Как вы управляете рисками в проекте?',
+    type: 'text',
+    hint: 'Опишите процесс идентификации, оценки и митигации',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'pm_e_1',
+    competency: 'project_management',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Как масштабировать Agile на уровне организации?',
+    type: 'text',
+    hint: 'Рассмотрите фреймворки SAFe, LeSS или другие подходы',
+    points: 30,
+    minLength: 15
+  },
+
+  // Кибербезопасность
+  {
+    id: 'cs_b_1',
+    competency: 'cybersecurity',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое SQL-инъекция?',
+    type: 'multiple',
+    options: [
+      'Внедрение вредоносного SQL-кода в запросы',
+      'Метод оптимизации базы данных',
+      'Способ шифрования данных',
+      'Тип резервного копирования'
+    ],
+    correctAnswer: 'Внедрение вредоносного SQL-кода в запросы',
+    points: 10
+  },
+  {
+    id: 'cs_b_2',
+    competency: 'cybersecurity',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое двухфакторная аутентификация?',
+    type: 'multiple',
+    options: [
+      'Использование двух методов подтверждения личности',
+      'Двойная проверка пароля',
+      'Шифрование в два этапа',
+      'Резервная копия данных'
+    ],
+    correctAnswer: 'Использование двух методов подтверждения личности',
+    points: 10
+  },
+  {
+    id: 'cs_i_1',
+    competency: 'cybersecurity',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Опишите основные принципы защиты веб-приложений',
+    type: 'text',
+    hint: 'Рассмотрите OWASP Top 10 и методы защиты',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'cs_i_2',
+    competency: 'cybersecurity',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Как работает XSS атака и как от нее защититься?',
+    type: 'text',
+    hint: 'Объясните механизм и методы предотвращения',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'cs_e_1',
+    competency: 'cybersecurity',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Разработайте стратегию реагирования на инциденты безопасности',
+    type: 'text',
+    hint: 'Включите обнаружение, анализ, сдерживание и восстановление',
+    points: 30,
+    minLength: 15
+  },
+
+  // Облачные технологии
+  {
+    id: 'cc_b_1',
+    competency: 'cloud_computing',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое IaaS (Infrastructure as a Service)?',
+    type: 'multiple',
+    options: [
+      'Предоставление виртуализированных вычислительных ресурсов',
+      'Готовое программное обеспечение в облаке',
+      'Платформа для разработки приложений',
+      'Система хранения данных'
+    ],
+    correctAnswer: 'Предоставление виртуализированных вычислительных ресурсов',
+    points: 10
+  },
+  {
+    id: 'cc_b_2',
+    competency: 'cloud_computing',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое автомасштабирование в облаке?',
+    type: 'multiple',
+    options: [
+      'Автоматическое изменение ресурсов по нагрузке',
+      'Увеличение размера хранилища',
+      'Обновление программного обеспечения',
+      'Резервное копирование данных'
+    ],
+    correctAnswer: 'Автоматическое изменение ресурсов по нагрузке',
+    points: 10
+  },
+  {
+    id: 'cc_i_1',
+    competency: 'cloud_computing',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните разницу между IaaS, PaaS и SaaS',
+    type: 'text',
+    hint: 'Приведите примеры сервисов для каждой модели',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'cc_i_2',
+    competency: 'cloud_computing',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Как оптимизировать затраты на облачную инфраструктуру?',
+    type: 'text',
+    hint: 'Рассмотрите резервирование, автомасштабирование, мониторинг',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'cc_e_1',
+    competency: 'cloud_computing',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Разработайте multi-cloud стратегию для enterprise приложения',
+    type: 'text',
+    hint: 'Учитывайте отказоустойчивость, безопасность, управление',
+    points: 30,
+    minLength: 15
+  },
+
+  // Программирование
+  {
+    id: 'pr_b_1',
+    competency: 'programming',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое переменная в программировании?',
+    type: 'multiple',
+    options: [
+      'Контейнер для хранения данных',
+      'Функция для вычислений',
+      'Тип данных',
+      'Оператор сравнения'
+    ],
+    correctAnswer: 'Контейнер для хранения данных',
+    points: 10
+  },
+  {
+    id: 'pr_b_2',
+    competency: 'programming',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое массив?',
+    type: 'multiple',
+    options: [
+      'Упорядоченная коллекция элементов',
+      'Тип цикла',
+      'Условный оператор',
+      'Функция обработки строк'
+    ],
+    correctAnswer: 'Упорядоченная коллекция элементов',
+    points: 10
+  },
+  {
+    id: 'pr_i_1',
+    competency: 'programming',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните концепцию рекурсии и приведите пример использования',
+    type: 'text',
+    hint: 'Опишите базовый и рекурсивный случаи',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'pr_i_2',
+    competency: 'programming',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'В чем разница между стеком и очередью?',
+    type: 'text',
+    hint: 'Опишите принципы работы и примеры применения',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'pr_e_1',
+    competency: 'programming',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Объясните принципы SOLID и их применение в ООП',
+    type: 'text',
+    hint: 'Раскройте каждый принцип с примерами',
+    points: 30,
+    minLength: 15
+  },
+
+  // Дополнительные вопросы для существующих компетенций
+  
+  // Графический дизайн - дополнительные
+  {
+    id: 'gd_b_3',
+    competency: 'graphic_design',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое типографика?',
+    type: 'multiple',
+    options: [
+      'Искусство оформления текста',
+      'Редактор изображений',
+      'Цветовая схема',
+      'Формат файла'
+    ],
+    correctAnswer: 'Искусство оформления текста',
+    points: 10
+  },
+  {
+    id: 'gd_i_2',
+    competency: 'graphic_design',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните принцип золотого сечения в дизайне',
+    type: 'text',
+    hint: 'Опишите применение и визуальное воздействие',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'gd_e_2',
+    competency: 'graphic_design',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Разработайте дизайн-систему для крупного проекта',
+    type: 'text',
+    hint: 'Включите компоненты, цвета, типографику, иконки',
+    points: 30,
+    minLength: 15
+  },
+
+  // Системное администрирование - дополнительные
+  {
+    id: 'sa_b_3',
+    competency: 'system_admin',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое IP-адрес?',
+    type: 'multiple',
+    options: [
+      'Уникальный идентификатор устройства в сети',
+      'Пароль доступа к системе',
+      'Тип протокола',
+      'Версия операционной системы'
+    ],
+    correctAnswer: 'Уникальный идентификатор устройства в сети',
+    points: 10
+  },
+  {
+    id: 'sa_i_2',
+    competency: 'system_admin',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Как настроить автоматическое резервное копирование?',
+    type: 'text',
+    hint: 'Опишите инструменты и стратегию бэкапов',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'sa_e_2',
+    competency: 'system_admin',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Создайте план миграции сервисов в новый дата-центр',
+    type: 'text',
+    hint: 'Учитывайте минимизацию простоя и тестирование',
+    points: 30,
+    minLength: 15
+  },
+
+  // Веб-разработка - дополнительные
+  {
+    id: 'wd_b_3',
+    competency: 'web_dev',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое responsive design?',
+    type: 'multiple',
+    options: [
+      'Адаптация интерфейса под разные устройства',
+      'Быстрая загрузка страниц',
+      'Интерактивные элементы',
+      'Анимация на сайте'
+    ],
+    correctAnswer: 'Адаптация интерфейса под разные устройства',
+    points: 10
+  },
+  {
+    id: 'wd_i_2',
+    competency: 'web_dev',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните принципы работы REST API',
+    type: 'text',
+    hint: 'Опишите HTTP методы и структуру запросов',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'wd_e_2',
+    competency: 'web_dev',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Как оптимизировать производительность веб-приложения?',
+    type: 'text',
+    hint: 'Рассмотрите кэширование, lazy loading, оптимизацию запросов',
+    points: 30,
+    minLength: 15
+  },
+
+  // Мобильная разработка - дополнительные
+  {
+    id: 'md_b_2',
+    competency: 'mobile_dev',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое Activity в Android?',
+    type: 'multiple',
+    options: [
+      'Экран приложения с пользовательским интерфейсом',
+      'База данных приложения',
+      'Фоновый сервис',
+      'Системное уведомление'
+    ],
+    correctAnswer: 'Экран приложения с пользовательским интерфейсом',
+    points: 10
+  },
+  {
+    id: 'md_i_2',
+    competency: 'mobile_dev',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Объясните жизненный цикл мобильного приложения',
+    type: 'text',
+    hint: 'Опишите состояния и переходы между ними',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'md_e_1',
+    competency: 'mobile_dev',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Разработайте архитектуру offline-first приложения',
+    type: 'text',
+    hint: 'Учитывайте синхронизацию, конфликты данных, хранение',
+    points: 30,
+    minLength: 15
+  },
+
+  // Data Science - дополнительные
+  {
+    id: 'ds_b_2',
+    competency: 'data_science',
+    difficulty: DIFFICULTY_LEVELS.BEGINNER,
+    question: 'Что такое датасет в машинном обучении?',
+    type: 'multiple',
+    options: [
+      'Набор данных для обучения модели',
+      'Алгоритм обработки данных',
+      'Инструмент визуализации',
+      'Тип нейронной сети'
+    ],
+    correctAnswer: 'Набор данных для обучения модели',
+    points: 10
+  },
+  {
+    id: 'ds_i_2',
+    competency: 'data_science',
+    difficulty: DIFFICULTY_LEVELS.INTERMEDIATE,
+    question: 'Как провести feature engineering для улучшения модели?',
+    type: 'text',
+    hint: 'Опишите методы создания и отбора признаков',
+    points: 20,
+    minLength: 15
+  },
+  {
+    id: 'ds_e_1',
+    competency: 'data_science',
+    difficulty: DIFFICULTY_LEVELS.EXPERT,
+    question: 'Разработайте pipeline для production ML модели',
+    type: 'text',
+    hint: 'Включите обучение, валидацию, деплой, мониторинг',
+    points: 30,
+    minLength: 15
   }
 ];
 
