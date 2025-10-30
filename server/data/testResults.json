@@ -268,5 +268,1904 @@
     },
     "id": "test_1761852144878_26ysweow2",
     "timestamp": "2025-10-30T19:22:24.878Z"
+  },
+  {
+    "full_name": "ншаловрп",
+    "user_type": "Студент",
+    "test_id": "test_1761853256297_fv6q1btir",
+    "selected_competencies": [
+      "cybersecurity",
+      "graphic_design"
+    ],
+    "test_score": {
+      "overallScore": 84,
+      "totalQuestions": 12,
+      "correctAnswers": 5,
+      "competencyResults": {
+        "cybersecurity": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 7,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-30T19:42:32.328Z"
+    },
+    "id": "test_1761853352341_1w6kw0js0",
+    "timestamp": "2025-10-30T19:42:32.341Z"
+  },
+  {
+    "full_name": "User_0fc739",
+    "user_type": "Преподаватель",
+    "test_id": "test_750563bd1b",
+    "selected_competencies": [
+      "project_management",
+      "graphic_design",
+      "web_dev",
+      "data_science",
+      "programming",
+      "devops",
+      "mobile_dev"
+    ],
+    "test_score": {
+      "overallScore": 85,
+      "totalQuestions": 22,
+      "correctAnswers": 15,
+      "competencyResults": {
+        "project_management": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "graphic_design": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-27T20:14:05.803886"
+    },
+    "id": "test_09ef645111",
+    "timestamp": "2025-10-30T20:14:05.803925"
+  },
+  {
+    "full_name": "User_eb5d9d",
+    "user_type": "Студент",
+    "test_id": "test_106db0c772",
+    "selected_competencies": [
+      "web_dev",
+      "cloud_computing",
+      "programming",
+      "mobile_dev",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 85,
+      "totalQuestions": 24,
+      "correctAnswers": 17,
+      "competencyResults": {
+        "web_dev": {
+          "score": 87,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "programming": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-25T20:14:05.803993"
+    },
+    "id": "test_283d3ee8b2",
+    "timestamp": "2025-10-30T20:14:05.804004"
+  },
+  {
+    "full_name": "User_1e6b15",
+    "user_type": "Студент",
+    "test_id": "test_f54b2462b1",
+    "selected_competencies": [
+      "cybersecurity",
+      "mobile_dev",
+      "cloud_computing",
+      "devops",
+      "programming",
+      "graphic_design",
+      "system_admin"
+    ],
+    "test_score": {
+      "overallScore": 83,
+      "totalQuestions": 27,
+      "correctAnswers": 19,
+      "competencyResults": {
+        "cybersecurity": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 91,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "programming": {
+          "score": 81,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-13T20:14:05.804058"
+    },
+    "id": "test_991ee844d1",
+    "timestamp": "2025-10-30T20:14:05.804067"
+  },
+  {
+    "full_name": "User_2fdf71",
+    "user_type": "Студент",
+    "test_id": "test_8e916c8440",
+    "selected_competencies": [
+      "data_science",
+      "devops",
+      "mobile_dev",
+      "cybersecurity"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 13,
+      "correctAnswers": 9,
+      "competencyResults": {
+        "data_science": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cybersecurity": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-10T20:14:05.804111"
+    },
+    "id": "test_15119d4e77",
+    "timestamp": "2025-10-30T20:14:05.804120"
+  },
+  {
+    "full_name": "User_4ea5d7",
+    "user_type": "Студент",
+    "test_id": "test_504fe625b7",
+    "selected_competencies": [
+      "graphic_design",
+      "programming",
+      "mobile_dev",
+      "cloud_computing"
+    ],
+    "test_score": {
+      "overallScore": 84,
+      "totalQuestions": 16,
+      "correctAnswers": 11,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 91,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-25T20:14:05.804164"
+    },
+    "id": "test_f6530bc5ca",
+    "timestamp": "2025-10-30T20:14:05.804173"
+  },
+  {
+    "full_name": "User_624736",
+    "user_type": "Преподаватель",
+    "test_id": "test_9b7344cd02",
+    "selected_competencies": [
+      "programming",
+      "cybersecurity",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 11,
+      "correctAnswers": 8,
+      "competencyResults": {
+        "programming": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 91,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-29T20:14:05.804210"
+    },
+    "id": "test_b2d2119f92",
+    "timestamp": "2025-10-30T20:14:05.804219"
+  },
+  {
+    "full_name": "User_40a100",
+    "user_type": "Преподаватель",
+    "test_id": "test_94545a7568",
+    "selected_competencies": [
+      "project_management",
+      "cloud_computing",
+      "data_science",
+      "devops",
+      "cybersecurity",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 82,
+      "totalQuestions": 21,
+      "correctAnswers": 15,
+      "competencyResults": {
+        "project_management": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 79,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 79,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-11T20:14:05.804266"
+    },
+    "id": "test_0c8d4aa320",
+    "timestamp": "2025-10-30T20:14:05.804276"
+  },
+  {
+    "full_name": "User_33e6d0",
+    "user_type": "Преподаватель",
+    "test_id": "test_66efef45af",
+    "selected_competencies": [
+      "mobile_dev",
+      "data_science",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 81,
+      "totalQuestions": 10,
+      "correctAnswers": 6,
+      "competencyResults": {
+        "mobile_dev": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-16T20:14:05.804312"
+    },
+    "id": "test_0f783229b0",
+    "timestamp": "2025-10-30T20:14:05.804320"
+  },
+  {
+    "full_name": "User_591d46",
+    "user_type": "Преподаватель",
+    "test_id": "test_554cf37bb0",
+    "selected_competencies": [
+      "graphic_design",
+      "cloud_computing",
+      "data_science",
+      "cybersecurity"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 10,
+      "correctAnswers": 6,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-19T20:14:05.804359"
+    },
+    "id": "test_d6f7c8500b",
+    "timestamp": "2025-10-30T20:14:05.804367"
+  },
+  {
+    "full_name": "User_eafcfa",
+    "user_type": "Студент",
+    "test_id": "test_04918933bf",
+    "selected_competencies": [
+      "project_management",
+      "programming",
+      "graphic_design",
+      "web_dev",
+      "cybersecurity",
+      "devops",
+      "cloud_computing"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 25,
+      "correctAnswers": 18,
+      "competencyResults": {
+        "project_management": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "programming": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 87,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cloud_computing": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-26T20:14:05.804417"
+    },
+    "id": "test_d125197084",
+    "timestamp": "2025-10-30T20:14:05.804425"
+  },
+  {
+    "full_name": "User_efb1f0",
+    "user_type": "Студент",
+    "test_id": "test_1c54d4df35",
+    "selected_competencies": [
+      "data_science",
+      "devops",
+      "system_admin"
+    ],
+    "test_score": {
+      "overallScore": 91,
+      "totalQuestions": 14,
+      "correctAnswers": 11,
+      "competencyResults": {
+        "data_science": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "devops": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 90,
+          "level": "Эксперт",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-18T20:14:05.804464"
+    },
+    "id": "test_c659843126",
+    "timestamp": "2025-10-30T20:14:05.804473"
+  },
+  {
+    "full_name": "User_125e04",
+    "user_type": "Преподаватель",
+    "test_id": "test_34cc051c49",
+    "selected_competencies": [
+      "system_admin",
+      "graphic_design",
+      "cybersecurity",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 85,
+      "totalQuestions": 18,
+      "correctAnswers": 12,
+      "competencyResults": {
+        "system_admin": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 79,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-27T20:14:05.804511"
+    },
+    "id": "test_5e377d17b5",
+    "timestamp": "2025-10-30T20:14:05.804520"
+  },
+  {
+    "full_name": "User_b5f54d",
+    "user_type": "Студент",
+    "test_id": "test_298239a687",
+    "selected_competencies": [
+      "project_management",
+      "mobile_dev",
+      "system_admin",
+      "devops",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 86,
+      "totalQuestions": 21,
+      "correctAnswers": 16,
+      "competencyResults": {
+        "project_management": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "system_admin": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 81,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-09T20:14:05.804573"
+    },
+    "id": "test_47ebc1bbd1",
+    "timestamp": "2025-10-30T20:14:05.804582"
+  },
+  {
+    "full_name": "User_bb5d52",
+    "user_type": "Преподаватель",
+    "test_id": "test_4a82c19b93",
+    "selected_competencies": [
+      "mobile_dev",
+      "devops",
+      "project_management",
+      "cloud_computing",
+      "web_dev",
+      "cybersecurity",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 27,
+      "correctAnswers": 20,
+      "competencyResults": {
+        "mobile_dev": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "devops": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "project_management": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cloud_computing": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-25T20:14:05.804630"
+    },
+    "id": "test_5bceb121fd",
+    "timestamp": "2025-10-30T20:14:05.804639"
+  },
+  {
+    "full_name": "User_ffbb3a",
+    "user_type": "Студент",
+    "test_id": "test_a1f7f20025",
+    "selected_competencies": [
+      "web_dev",
+      "system_admin"
+    ],
+    "test_score": {
+      "overallScore": 90,
+      "totalQuestions": 7,
+      "correctAnswers": 5,
+      "competencyResults": {
+        "web_dev": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "system_admin": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-21T20:14:05.804663"
+    },
+    "id": "test_3f2e749353",
+    "timestamp": "2025-10-30T20:14:05.804673"
+  },
+  {
+    "full_name": "User_7a89de",
+    "user_type": "Преподаватель",
+    "test_id": "test_2e94fabc3d",
+    "selected_competencies": [
+      "graphic_design",
+      "web_dev",
+      "cybersecurity",
+      "programming",
+      "cloud_computing",
+      "mobile_dev",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 27,
+      "correctAnswers": 20,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 89,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cloud_computing": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-17T20:14:05.804747"
+    },
+    "id": "test_a7b763c5cb",
+    "timestamp": "2025-10-30T20:14:05.804757"
+  },
+  {
+    "full_name": "User_5e71e0",
+    "user_type": "Студент",
+    "test_id": "test_5a0ad83210",
+    "selected_competencies": [
+      "cybersecurity",
+      "system_admin",
+      "web_dev",
+      "project_management",
+      "programming",
+      "devops"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 20,
+      "correctAnswers": 14,
+      "competencyResults": {
+        "cybersecurity": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "web_dev": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "project_management": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 81,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-07T20:14:05.804804"
+    },
+    "id": "test_be3b311a40",
+    "timestamp": "2025-10-30T20:14:05.804813"
+  },
+  {
+    "full_name": "User_6ca4a8",
+    "user_type": "Преподаватель",
+    "test_id": "test_36e92ed0c8",
+    "selected_competencies": [
+      "devops",
+      "cybersecurity",
+      "system_admin",
+      "data_science",
+      "web_dev",
+      "mobile_dev",
+      "cloud_computing"
+    ],
+    "test_score": {
+      "overallScore": 86,
+      "totalQuestions": 23,
+      "correctAnswers": 15,
+      "competencyResults": {
+        "devops": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cybersecurity": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "system_admin": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "mobile_dev": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 79,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-27T20:14:05.804868"
+    },
+    "id": "test_85117a404b",
+    "timestamp": "2025-10-30T20:14:05.804876"
+  },
+  {
+    "full_name": "User_48745f",
+    "user_type": "Преподаватель",
+    "test_id": "test_a7e5dfd632",
+    "selected_competencies": [
+      "project_management",
+      "devops"
+    ],
+    "test_score": {
+      "overallScore": 82,
+      "totalQuestions": 12,
+      "correctAnswers": 9,
+      "competencyResults": {
+        "project_management": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-10T20:14:05.804898"
+    },
+    "id": "test_a053aea476",
+    "timestamp": "2025-10-30T20:14:05.804906"
+  },
+  {
+    "full_name": "User_bff844",
+    "user_type": "Преподаватель",
+    "test_id": "test_bb6dfccb9e",
+    "selected_competencies": [
+      "project_management",
+      "devops",
+      "graphic_design",
+      "programming",
+      "web_dev",
+      "mobile_dev",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 86,
+      "totalQuestions": 28,
+      "correctAnswers": 20,
+      "competencyResults": {
+        "project_management": {
+          "score": 90,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "devops": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 89,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-11T20:14:05.804955"
+    },
+    "id": "test_bf5c3ead99",
+    "timestamp": "2025-10-30T20:14:05.804965"
+  },
+  {
+    "full_name": "User_f97737",
+    "user_type": "Преподаватель",
+    "test_id": "test_653651049d",
+    "selected_competencies": [
+      "devops",
+      "graphic_design",
+      "system_admin",
+      "web_dev",
+      "data_science"
+    ],
+    "test_score": {
+      "overallScore": 82,
+      "totalQuestions": 15,
+      "correctAnswers": 10,
+      "competencyResults": {
+        "devops": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 81,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-04T20:14:05.805008"
+    },
+    "id": "test_4786b90328",
+    "timestamp": "2025-10-30T20:14:05.805025"
+  },
+  {
+    "full_name": "User_886e6a",
+    "user_type": "Студент",
+    "test_id": "test_b1b9b88d7d",
+    "selected_competencies": [
+      "data_science",
+      "devops",
+      "mobile_dev"
+    ],
+    "test_score": {
+      "overallScore": 83,
+      "totalQuestions": 7,
+      "correctAnswers": 4,
+      "competencyResults": {
+        "data_science": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 91,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-07T20:14:05.805060"
+    },
+    "id": "test_c8883fea4f",
+    "timestamp": "2025-10-30T20:14:05.805069"
+  },
+  {
+    "full_name": "User_8060e3",
+    "user_type": "Студент",
+    "test_id": "test_3fe164b20b",
+    "selected_competencies": [
+      "mobile_dev",
+      "cloud_computing",
+      "cybersecurity",
+      "system_admin",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 17,
+      "correctAnswers": 12,
+      "competencyResults": {
+        "mobile_dev": {
+          "score": 88,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 87,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "web_dev": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-11T20:14:05.805110"
+    },
+    "id": "test_f47bbf94e0",
+    "timestamp": "2025-10-30T20:14:05.805118"
+  },
+  {
+    "full_name": "User_0fa4ef",
+    "user_type": "Студент",
+    "test_id": "test_5ee8274314",
+    "selected_competencies": [
+      "web_dev",
+      "data_science",
+      "programming"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 11,
+      "correctAnswers": 8,
+      "competencyResults": {
+        "web_dev": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 90,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "programming": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-05T20:14:05.805167"
+    },
+    "id": "test_c77a8b876a",
+    "timestamp": "2025-10-30T20:14:05.805177"
+  },
+  {
+    "full_name": "User_34510d",
+    "user_type": "Студент",
+    "test_id": "test_c2bc5b4a4b",
+    "selected_competencies": [
+      "cloud_computing",
+      "devops",
+      "graphic_design",
+      "mobile_dev",
+      "web_dev"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 21,
+      "correctAnswers": 16,
+      "competencyResults": {
+        "cloud_computing": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 80,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "graphic_design": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 94,
+          "level": "Эксперт",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "web_dev": {
+          "score": 93,
+          "level": "Эксперт",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-15T20:14:05.805220"
+    },
+    "id": "test_3524abd8db",
+    "timestamp": "2025-10-30T20:14:05.805230"
+  },
+  {
+    "full_name": "User_4dac59",
+    "user_type": "Преподаватель",
+    "test_id": "test_b0ec449902",
+    "selected_competencies": [
+      "devops",
+      "cybersecurity"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 10,
+      "correctAnswers": 7,
+      "competencyResults": {
+        "devops": {
+          "score": 91,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cybersecurity": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-17T20:14:05.805253"
+    },
+    "id": "test_2c793f0ba9",
+    "timestamp": "2025-10-30T20:14:05.805261"
+  },
+  {
+    "full_name": "User_e79532",
+    "user_type": "Преподаватель",
+    "test_id": "test_ddb87a46cc",
+    "selected_competencies": [
+      "web_dev",
+      "project_management",
+      "data_science",
+      "programming",
+      "graphic_design",
+      "system_admin",
+      "mobile_dev"
+    ],
+    "test_score": {
+      "overallScore": 88,
+      "totalQuestions": 25,
+      "correctAnswers": 18,
+      "competencyResults": {
+        "web_dev": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "project_management": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "data_science": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "graphic_design": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-17T20:14:05.805312"
+    },
+    "id": "test_8e408f12b0",
+    "timestamp": "2025-10-30T20:14:05.805321"
+  },
+  {
+    "full_name": "User_31cfd7",
+    "user_type": "Преподаватель",
+    "test_id": "test_861d25989e",
+    "selected_competencies": [
+      "programming",
+      "mobile_dev",
+      "data_science",
+      "cybersecurity"
+    ],
+    "test_score": {
+      "overallScore": 87,
+      "totalQuestions": 17,
+      "correctAnswers": 12,
+      "competencyResults": {
+        "programming": {
+          "score": 92,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "mobile_dev": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "data_science": {
+          "score": 89,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cybersecurity": {
+          "score": 82,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-07T20:14:05.805360"
+    },
+    "id": "test_878900327c",
+    "timestamp": "2025-10-30T20:14:05.805368"
+  },
+  {
+    "full_name": "User_6c3f4b",
+    "user_type": "Студент",
+    "test_id": "test_d15cac54ec",
+    "selected_competencies": [
+      "data_science",
+      "system_admin"
+    ],
+    "test_score": {
+      "overallScore": 80,
+      "totalQuestions": 8,
+      "correctAnswers": 6,
+      "competencyResults": {
+        "data_science": {
+          "score": 78,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 83,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-28T20:14:05.805390"
+    },
+    "id": "test_e0accbbe9f",
+    "timestamp": "2025-10-30T20:14:05.805398"
+  },
+  {
+    "full_name": "User_d24427",
+    "user_type": "Студент",
+    "test_id": "test_ff977c3d84",
+    "selected_competencies": [
+      "cloud_computing",
+      "web_dev",
+      "graphic_design",
+      "cybersecurity",
+      "programming",
+      "devops"
+    ],
+    "test_score": {
+      "overallScore": 86,
+      "totalQuestions": 23,
+      "correctAnswers": 16,
+      "competencyResults": {
+        "cloud_computing": {
+          "score": 79,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "web_dev": {
+          "score": 95,
+          "level": "Эксперт",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "graphic_design": {
+          "score": 90,
+          "level": "Эксперт",
+          "questionsAsked": 4,
+          "correctAnswers": 3,
+          "finalDifficulty": "expert",
+          "recommendation": "Продолжайте углублять знания и делиться опытом"
+        },
+        "cybersecurity": {
+          "score": 81,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "programming": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 2,
+          "correctAnswers": 1,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "devops": {
+          "score": 85,
+          "level": "Продвинутый",
+          "questionsAsked": 6,
+          "correctAnswers": 5,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-10T20:14:05.805449"
+    },
+    "id": "test_5767e083eb",
+    "timestamp": "2025-10-30T20:14:05.805458"
+  },
+  {
+    "full_name": "User_22df27",
+    "user_type": "Преподаватель",
+    "test_id": "test_c93f946696",
+    "selected_competencies": [
+      "graphic_design",
+      "system_admin",
+      "cloud_computing"
+    ],
+    "test_score": {
+      "overallScore": 84,
+      "totalQuestions": 11,
+      "correctAnswers": 8,
+      "competencyResults": {
+        "graphic_design": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "beginner",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "system_admin": {
+          "score": 84,
+          "level": "Продвинутый",
+          "questionsAsked": 5,
+          "correctAnswers": 4,
+          "finalDifficulty": "intermediate",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        },
+        "cloud_computing": {
+          "score": 86,
+          "level": "Продвинутый",
+          "questionsAsked": 3,
+          "correctAnswers": 2,
+          "finalDifficulty": "expert",
+          "recommendation": "Развивайте практические навыки через реальные проекты"
+        }
+      },
+      "testType": "adaptive",
+      "completedAt": "2025-10-22T20:14:05.805493"
+    },
+    "id": "test_0502e22c18",
+    "timestamp": "2025-10-30T20:14:05.805502"
   }
 ]

@@ -787,7 +787,7 @@ function AdaptiveTestPage({ onBack }) {
 
             {currentQuestion.type === 'multiple' && currentQuestion.options && (
               <div className="multiple-container">
-                {currentQuestion.options.map((option) => (
+                {(currentQuestion.shuffledOptions || currentQuestion.options).map((option) => (
                   <button
                     key={option}
                     className={`option-btn ${userAnswer === option ? 'active' : ''}`}

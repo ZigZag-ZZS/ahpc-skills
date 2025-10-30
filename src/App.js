@@ -74,10 +74,10 @@ function App() {
           <div className="stats-cards">
             <div className="stat-card">
               <h3>1000+</h3>
-              <p>Пользователей уже оценили свои навыки</p>
+              <p>Уникальных вопросов по каждой компетенции</p>
             </div>
             <div className="stat-card">
-              <h3>10+</h3>
+              <h3>10</h3>
               <p>Компетенций оцениваются системой</p>
             </div>
             <div className="stat-card">
